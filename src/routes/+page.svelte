@@ -50,7 +50,7 @@
 		</main>
 		
 		<nav>
-			<a href="https://instagram.com" rel="external" target="_blank">Instagram</a>
+			<a href="https://instagram.com/arketypeworld" rel="external" target="_blank">Instagram</a>
 		</nav>
 	</footer>
 </section>
@@ -167,7 +167,7 @@
 
 		@media (max-width: $phone) {
 			position: relative;
-			padding: $base / 2;
+			padding: $base * 0.5;
 
 			> main {
 				flex-direction: column;
