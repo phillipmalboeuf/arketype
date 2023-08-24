@@ -3,7 +3,8 @@
   import Logo from '$lib/components/Logo.svelte'
   import type Player from 'vimeo__player'
   import { onMount } from 'svelte'
-    import MobileLogo from '$lib/components/MobileLogo.svelte';
+  import MobileLogo from '$lib/components/MobileLogo.svelte'
+  import { locale } from '$lib/stores'
 
 	let player: Player
 	let muted = true
@@ -31,7 +32,7 @@
 		<MobileLogo />
 	</figure>
 	
-	<iframe src="https://player.vimeo.com/video/649587110?h=e34763b124&autoplay=1&loop=1&portrait=0&muted=1&background=1&playsinline=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Ma soeur" id="video"></iframe>
+	<iframe src="https://player.vimeo.com/video/855429389?h=e34763b124&autoplay=1&loop=1&portrait=0&muted=1&background=1&playsinline=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Ma soeur" id="video"></iframe>
 	<!-- <video src="https://videos.ctfassets.net/2g43ft9kwm8s/1F2EeNAGL4lVvXYvuwrv8B/ea954a2787d5a9714928a219134fad4f/The_O_Pears_-_Lady_Winter__Official_Music_Video_.mp4" muted autoplay playsinline loop preload="auto"></video> -->
 
 	<footer>
@@ -40,17 +41,28 @@
 			<button on:click={() => {
 				muted = !muted
 				player.setMuted(muted)
-			}}>Sound {#if muted}On{:else}Off{/if}</button>
+			}}>Volume {#if muted}On{:else}Off{/if}</button>
 			{/if}
 		</nav>
 
 		<main>
 			<h1>Arketype</h1>
-			<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in.</p>
+			<p>
+				{#if $locale === 'fr-CA'}
+				FR Experience a personalized journey, where inclusive talent meets high-end results in an intimate boutique atmosphere, enhanced by world-wide post-production.
+				{:else}
+				Experience a personalized journey, where inclusive talent meets high-end results in an intimate boutique atmosphere, enhanced by world-wide post-production.
+				{/if}
+			</p>
 		</main>
 		
 		<nav>
 			<a href="https://instagram.com/arketypeworld" rel="external" target="_blank">Instagram</a>
+			{#if $locale === 'fr-CA'}
+			<a href="https://arketypeworld.com">En</a>
+			{:else}
+			<a href="https://fr.arketypeworld.com">Fr</a>
+			{/if}
 		</nav>
 	</footer>
 </section>
@@ -152,13 +164,15 @@
 			flex: 1;
 
 			&:last-child {
-				text-align: right;
+				display: flex;
+				justify-content: end;
+				gap: $base * 1.5;
 			}
 		}
 
 		> main {
 			text-align: center;
-			max-width: $base * 66;
+			max-width: $base * 50;
 
 			display: flex;
 			flex-direction: column-reverse;
