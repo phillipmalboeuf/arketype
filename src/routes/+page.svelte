@@ -54,7 +54,7 @@
 			<h1>Arketype</h1>
 			<p>
 				{#if $locale === 'fr-CA'}
-				FR Experience a personalized journey, where inclusive talent meets high-end results in an intimate boutique atmosphere, enhanced by world-wide post-production.
+				Expérience personnalisé où des talents inclusifs rencontrent des résultats haut de gamme dans une atmosphère intime boutique, renforcée par une post-production mondiale.
 				{:else}
 				Experience a personalized journey, where inclusive talent meets high-end results in an intimate boutique atmosphere, enhanced by world-wide post-production.
 				{/if}
@@ -64,9 +64,9 @@
 		<nav>
 			<a href="https://instagram.com/arketypeworld" rel="external" target="_blank">Instagram</a>
 			{#if $locale === 'fr-CA'}
-			<a href="https://arketypeworld.com">En</a>
+			<a href="https://arketype.votre.best">En</a>
 			{:else}
-			<a href="https://fr.arketypeworld.com">Fr</a>
+			<a href="https://fr-arketype.votre.best">Fr</a>
 			{/if}
 		</nav>
 	</footer>
@@ -203,7 +203,7 @@
 					left: 0;
 					width: 100vw;
 					padding: $base;
-					height: calc(33vh - ($base * 4));
+					min-height: calc(33vh - ($base * 2));
 					display: flex;
 					align-items: flex-end;
 				}
