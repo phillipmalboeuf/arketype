@@ -182,7 +182,7 @@
 
 		> main {
 			text-align: center;
-			max-width: $base * 50.6666666;
+			max-width: $base * 55;
 
 			display: flex;
 			flex-direction: column-reverse;
