@@ -168,11 +168,7 @@
 
 		> nav {
 			flex: 1;
-
-			@media (max-width: $phone) {
-				font-size: $base * 0.88;
-			}
-
+			
 			&:last-child {
 				display: flex;
 				justify-content: end;
@@ -195,8 +191,8 @@
 
 		@media (max-width: $phone) {
 			position: relative;
-			padding: $base * 0.5;
-			align-items: flex-start;
+			padding: $base * 0.25;
+			// align-items: flex-start;
 
 			> main {
 				flex-direction: column;
