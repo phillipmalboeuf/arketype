@@ -173,6 +173,10 @@
 				display: flex;
 				justify-content: end;
 				gap: $base * 1.5;
+
+				@media (max-width: $phone) {
+					gap: $base * 0.66;
+				}
 			}
 		}
 
