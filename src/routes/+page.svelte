@@ -140,7 +140,7 @@
 		top: 50vh;
 		left: 50vw;
 		z-index: 0;
-		background-color: white;
+		background-color: black;
 		min-width: 100vw;
 		min-height: 100vh;
 		aspect-ratio: 1.77777;
