@@ -144,7 +144,7 @@
 		min-width: 100vw;
 		min-height: 100vh;
 		aspect-ratio: 1.77777;
-		transform: translate(-50%, -50%);
+		transform: translate(-50%, -50%) scale(1.33);
 
 		@media (max-width: $phone) {
 			top: 33vh;
