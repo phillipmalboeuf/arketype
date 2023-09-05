@@ -11,9 +11,8 @@
 
 	onMount(async () => {
 		if (browser) {
-			import('vimeo-video-element')
-			console.log(player)
 			//@ts-ignore
+			import('vimeo-video-element')
 			// const Vimeo = (await import('@vimeo/player')).default 
 			
 			// player = new Vimeo('video') as Player
@@ -46,7 +45,7 @@
 			<button on:click={() => {
 				muted = !muted
 				player.muted = muted
-			}}>Volume {#if muted}On{:else}Off{/if}</button>
+			}}>Sound {#if muted}On{:else}Off{/if}</button>
 			{/if}
 		</nav>
 
@@ -58,15 +57,16 @@
 				{:else}
 				Experience a personalized journey, where inclusive talent meets high-end results in an intimate boutique atmosphere, enhanced by world-wide post-production.
 				{/if}
+				<a href="mailto:info@arketypeworld.com" rel="external" target="_blank">info@arketypeworld.com</a>
 			</p>
 		</main>
 		
 		<nav>
-			<a href="https://instagram.com/arketypeworld" rel="external" target="_blank">Instagram</a>
+			<!-- <a href="https://instagram.com/arketypeworld" rel="external" target="_blank">Instagram</a> -->
 			{#if $locale === 'fr-CA'}
-			<a href="https://arketype.votre.best">En</a>
+			<a href="https://arketype.votre.best">English</a>
 			{:else}
-			<a href="https://arketype-fr.votre.best">Fr</a>
+			<a href="https://arketype-fr.votre.best">Français</a>
 			{/if}
 		</nav>
 	</footer>
@@ -187,11 +187,17 @@
 			display: flex;
 			flex-direction: column-reverse;
 			gap: $base;
+
+			p {
+				a {
+					display: block;
+				}
+			}
 		}
 
 		@media (max-width: $phone) {
 			position: relative;
-			padding: $base * 0.25;
+			padding: $base * 0.5;
 			// align-items: flex-start;
 
 			> main {
@@ -205,7 +211,12 @@
 					padding: $base;
 					min-height: calc(33vh - ($base * 2));
 					display: flex;
-					align-items: flex-end;
+					flex-direction: column;
+					justify-content: flex-end;
+
+					a {
+						margin-top: $base;
+					}
 				}
 			}
 		}
