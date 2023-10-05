@@ -53,7 +53,7 @@
 			<h1>Arketype</h1>
 			<p>
 				{#if $locale === 'fr-CA'}
-				Expérience personnalisé où des talents inclusifs rencontrent des résultats haut de gamme dans une atmosphère intime boutique, renforcée par une post-production mondiale.
+				Vivez une expérience personnalisée où les talents inclusifs se combinent avec des performances haut de gamme dans une atmosphère boutique, orchestrée par des experts en post-production.
 				{:else}
 				Experience a personalized journey, where inclusive talent meets high-end results in an intimate boutique atmosphere, enhanced by world-wide post-production.
 				{/if}
