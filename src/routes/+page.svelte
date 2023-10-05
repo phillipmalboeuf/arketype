@@ -49,7 +49,7 @@
 			{/if}
 		</nav>
 
-		<main>
+		<main class="{$locale}">
 			<h1>Arketype</h1>
 			<p>
 				{#if $locale === 'fr-CA'}
@@ -159,7 +159,7 @@
 		z-index: 2;
 		width: 100%;
 		padding: $base * 2;
-		mix-blend-mode: exclusion;
+		// mix-blend-mode: exclusion;
 
 		display: flex;
 		align-items: flex-end;
@@ -182,7 +182,11 @@
 
 		> main {
 			text-align: center;
-			max-width: $base * 50.666666;
+			max-width: $base * 45;
+
+			&.fr-CA {
+				max-width: $base * 54;
+			}
 
 			display: flex;
 			flex-direction: column-reverse;
