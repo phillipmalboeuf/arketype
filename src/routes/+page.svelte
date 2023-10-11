@@ -66,7 +66,7 @@
 			{#if $locale === 'fr-CA'}
 			<a href="https://arketypeworld.com">English</a>
 			{:else}
-			<a href="https:/fr.arketypeworld.com">Français</a>
+			<a href="https://fr.arketypeworld.com">Français</a>
 			{/if}
 		</nav>
 	</footer>
