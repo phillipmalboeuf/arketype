@@ -64,9 +64,9 @@
 		<nav>
 			<!-- <a href="https://instagram.com/arketypeworld" rel="external" target="_blank">Instagram</a> -->
 			{#if $locale === 'fr-CA'}
-			<a href="https://arketype.votre.best">English</a>
+			<a href="https://arketypeworld.com">English</a>
 			{:else}
-			<a href="https://arketype-fr.votre.best">Français</a>
+			<a href="https:/fr.arketypeworld.com">Français</a>
 			{/if}
 		</nav>
 	</footer>
