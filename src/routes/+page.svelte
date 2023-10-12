@@ -1,22 +1,23 @@
 <script lang="ts">
   import { browser } from '$app/environment'
   import Logo from '$lib/components/Logo.svelte'
-  // import type Player from 'vimeo__player'
+  import type Player from 'vimeo__player'
+	// import Vimeo from 'vimeo__player'
   import { onMount } from 'svelte'
   import MobileLogo from '$lib/components/MobileLogo.svelte'
   import { locale } from '$lib/stores'
 
-	let player: HTMLVideoElement
+	let player: Player
 	let muted = true
 
 	onMount(async () => {
 		if (browser) {
 			//@ts-ignore
-			import('vimeo-video-element')
-			// const Vimeo = (await import('@vimeo/player')).default 
+			// import('vimeo-video-element')
+			const Vimeo = (await import('@vimeo/player')).default 
 			
-			// player = new Vimeo('video') as Player
-			// player.play()
+			player = new Vimeo('video') as Player
+			player.play()
 		}
 	})
 	
@@ -34,9 +35,9 @@
 	</figure>
 	
 	{#if browser}
-	<vimeo-video bind:this={player} autoplay loop muted background playsinline src="https://vimeo.com/858724565?h=0b37ea3820"></vimeo-video>
+	<!-- <vimeo-video bind:this={player} autoplay loop muted background playsinline src="https://vimeo.com/858724565?h=0b37ea3820"></vimeo-video> -->
+	<iframe src="https://player.vimeo.com/video/858724565?h=0b37ea3820&autoplay=1&loop=1&portrait=0&muted=1&background=1&playsinline=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen id="video"></iframe>
 	{/if}
-	<!-- <iframe src="https://player.vimeo.com/video/858724565?h=0b37ea3820&autoplay=1&loop=1&portrait=0&muted=1&background=1&playsinline=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen id="video"></iframe> -->
 	<!-- <video src="https://videos.ctfassets.net/2g43ft9kwm8s/1F2EeNAGL4lVvXYvuwrv8B/ea954a2787d5a9714928a219134fad4f/The_O_Pears_-_Lady_Winter__Official_Music_Video_.mp4" muted autoplay playsinline loop preload="auto"></video> -->
 
 	<footer>
@@ -44,7 +45,7 @@
 			{#if player}
 			<button on:click={() => {
 				muted = !muted
-				player.muted = muted
+				player.setMuted(muted)
 			}}>Sound {#if muted}On{:else}Off{/if}</button>
 			{/if}
 		</nav>
