@@ -183,7 +183,7 @@
 
 		> main {
 			text-align: center;
-			max-width: $base * 45;
+			max-width: $base * 46;
 
 			&.fr-CA {
 				max-width: $base * 69;
