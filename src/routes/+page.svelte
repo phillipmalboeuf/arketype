@@ -56,7 +56,7 @@
 				{#if $locale === 'fr-CA'}
 				Vivez une expérience personnalisée où talents et performances haut de gamme s’unissent dans une atmosphère boutique, orchestrée par une équipe d’experts, au sein d’une maison de post-production dédiée à la satisfaction de ses clients.
 				{:else}
-				Experience a personalized journey, where inclusive talent meets high-end results in an intimate boutique atmosphere, enhanced by world-wide post-production.
+				Experience a personalized journey with a talent-focused company collaborating with creatives worldwide. We are an intimate boutique post-production studio driven by a passion for creative storytelling, ambitious technical exploration, and exceptional imagery.
 				{/if}
 				<a href="mailto:info@arketypeworld.com" rel="external" target="_blank">info@arketypeworld.com</a>
 			</p>
@@ -183,7 +183,7 @@
 
 		> main {
 			text-align: center;
-			max-width: $base * 46;
+			max-width: $base * 52;
 
 			&.fr-CA {
 				max-width: $base * 69;
