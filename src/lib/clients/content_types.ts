@@ -6,7 +6,7 @@ export interface TypeArtistFields {
     thumbnail?: EntryFieldTypes.AssetLink;
     color?: EntryFieldTypes.Symbol;
     description?: EntryFieldTypes.RichText;
-    service?: EntryFieldTypes.EntryLink<TypeServiceSkeleton>;
+    service: EntryFieldTypes.EntryLink<TypeServiceSkeleton>;
 }
 
 export type TypeArtistSkeleton = EntrySkeletonType<TypeArtistFields, "artist">;
@@ -48,6 +48,7 @@ export interface TypeProjectFields {
     date?: EntryFieldTypes.Date;
     thumbnail?: EntryFieldTypes.AssetLink;
     artists?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeArtistSkeleton>>;
+    services?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeServiceSkeleton>>;
     client?: EntryFieldTypes.Symbol;
     color?: EntryFieldTypes.Symbol;
     description?: EntryFieldTypes.RichText;
@@ -64,6 +65,7 @@ export function isTypeProject<Modifiers extends ChainModifiers, Locales extends 
 export interface TypeServiceFields {
     title: EntryFieldTypes.Symbol;
     id: EntryFieldTypes.Symbol;
+    artist?: EntryFieldTypes.Symbol;
 }
 
 export type TypeServiceSkeleton = EntrySkeletonType<TypeServiceFields, "service">;
