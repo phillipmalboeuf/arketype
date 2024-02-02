@@ -1,5 +1,23 @@
 <script lang="ts">
+  import { goto, preloadData, pushState, replaceState } from '$app/navigation'
+	import { fade } from 'svelte/transition'
+
+  import Logo from '$lib/components/Logo.svelte'
+  import Video from '$lib/components/Video.svelte'
   
+
+	import ProjectsPage from './projects/+page.svelte'
+
+	let data
+	let href: string
+
+	const projects = async () => {
+		if (href) return
+
+		href = '/projects'
+		pushState(href, {})
+		data = await preloadData(href)
+	}
 </script>
 
 <svelte:head>
@@ -7,13 +25,62 @@
 	<meta name="description" content="Arketype post-production" />
 </svelte:head>
 
-<main>
+<svelte:window on:scroll={(e) => {
+	if (href && e.currentTarget.scrollY <= 0) {
+		replaceState('/', {})
+		href = undefined
+	} else {
+		projects()
+	}
+}} />
 
+<header class:data>
+
+	<button on:click={() => {
+		window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })
+		projects()
+	}}>
+		<Logo />
+	</button>
+
+	<Video />
+</header>
+
+{#if data?.status === 200}
+<main transition:fade={{ duration: 333 }}>
+	<ProjectsPage data={data.data} />
 </main>
+{/if}
 
 
 <style lang="scss">
-	main {
+	header {
+		cursor: pointer;
+		position: relative;
+		z-index: 3;
+		margin-top: $base * -4;
+		margin-bottom: $base * 4;
+		height: 100vh;
+		background-color: var(--back-color);
 
+		&:not(.data) {
+			margin-bottom: 100vh;
+		}
+
+		button {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 30;
+			border: none;
+			padding: 0;
+
+			:global(svg) {
+				width: 100%;
+				height: 100%;
+			}
+		}
 	}
 </style>

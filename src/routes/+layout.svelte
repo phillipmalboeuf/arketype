@@ -3,6 +3,7 @@
 
 	import { dark } from '$lib/stores'
 	import Header from '$lib/components/Header.svelte'
+	import Footer from '$lib/components/Footer.svelte'
 
 	import type { LayoutData } from './$types'
 	export let data: LayoutData
@@ -13,6 +14,8 @@
 <main class:dark={$dark} class:light={$dark !== undefined && !$dark}>
 	<slot />
 </main>
+
+<Footer />
 
 <style>
 </style>
