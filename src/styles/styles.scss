@@ -89,3 +89,92 @@ button {
 button:focus:not(:focus-visible) {
 	outline: none;
 }
+
+table {
+	width: 100%;
+	-webkit-border-horizontal-spacing: 0;
+	-webkit-border-vertical-spacing: 0;
+
+	th {
+		text-align: center;
+		text-transform: uppercase;
+	}
+
+	td,
+	th {
+		border-top: 1px solid;
+		padding: $base * 0.5;
+		white-space: pre-line;
+		width: calc(100% / var(--length));
+	}
+
+	tr {
+		&:last-child {
+			td,
+			th {
+				// border-bottom: 1px solid;
+			}
+		}
+	}
+
+	td {
+		&:not(:first-child) {
+			// border-left: 1px solid;
+		}
+	}
+}
+
+
+// #GRID
+
+.flex {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  --gap: 0px;
+  gap: var(--gap);
+
+  &.flex--gapped {
+    --gap: #{$base};
+
+    @media (max-width: $phone) {
+      --gap: #{$base/2};
+    }
+  }
+
+  &.flex--thick_gapped {
+    --gap: #{$base*2};
+  }
+
+  &.flex--tight_gapped {
+    --gap: #{$base/2};
+    @media (max-width: $phone) {
+      --gap: #{$base/3};
+    }
+  }
+
+  &.flex--tight_guttered_on_phone {
+    @media (max-width: $phone) {
+      --gap: #{$base/3};
+    }
+  }
+}
+
+  .col {
+    @for $i from 1 through $number_of_columns { 
+      &.col--#{$i}of#{$number_of_columns} {
+        $width: (100% / $number_of_columns * $i);
+        $adjust: calc(var(--gap) / #{$number_of_columns / $i});
+        width: calc(#{$width} - var(--gap) + #{$adjust});
+       }
+    }
+
+    @for $i from 1 through 3 { 
+      &.col--#{$i}of#{3} {
+        $width: (100% / 3 * $i);
+        $adjust: calc(var(--gap) / #{3 / $i});
+        width: calc(#{$width} - var(--gap) + #{$adjust});
+       }
+    }
+  }
+

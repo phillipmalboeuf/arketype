@@ -27,8 +27,6 @@ export const load = (async ({ locals, url, params }) => {
     }
   })
 
-  console.log(services[filter])
-
   const [artists] = await Promise.all([
     content.getEntries<TypeArtistSkeleton>({ content_type: "artist", include: 2, order: ["fields.name"],  limit: 12, ...filter ? { links_to_entry: services[filter].sys } : {} }),
   ])

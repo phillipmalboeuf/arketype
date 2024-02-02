@@ -34,6 +34,7 @@
   header {
     position: sticky;
     top: 0;
+    background-color: var(--back-color);
     padding: $base;
 
     display: flex;

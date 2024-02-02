@@ -6,10 +6,16 @@
   export let projects: ContentfulCollection<Entry<TypeProjectSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string>>
 </script>
 
-<ol>
+<ol class="flex flex--gapped">
   {#each projects.items as project}
-  <li>
+  <li class="col col--6of12">
     <a href="/projects/{project.fields.id}">
+      {#if project.fields.thumbnail}
+      <figure>
+        <Media media={project.fields.thumbnail} small />
+      </figure>
+      {/if}
+
       <h2>{project.fields.title}</h2>
 
       <aside>
@@ -17,12 +23,6 @@
         {artist.fields.service.fields.title} {artist.fields.name}<br>
         {/each}
       </aside>
-
-      {#if project.fields.thumbnail}
-      <figure>
-        <Media media={project.fields.thumbnail} small />
-      </figure>
-      {/if}
     </a>
   </li>
   {/each}
@@ -31,13 +31,6 @@
 <style lang="scss">
   ol {
     list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    // gap: $base;
-
-    li {
-      width: 50%;
-      padding: $base;
-    }
+    padding: $base;
   }
 </style>
