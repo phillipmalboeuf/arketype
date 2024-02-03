@@ -2,6 +2,7 @@
   import type { TypeProjectSkeleton } from '$lib/clients/content_types';
   import type { ContentfulCollection, Entry } from 'contentful'
   import Media from './Media.svelte'
+  import { year } from '$lib/formatters'
 
   export let projects: ContentfulCollection<Entry<TypeProjectSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string>>
 </script>
@@ -16,12 +17,16 @@
       </figure>
       {/if}
 
-      <h2>{project.fields.title}</h2>
-
       <aside>
-        {#each project.fields.artists as artist}
-        {artist.fields.service.fields.title} {artist.fields.name}<br>
-        {/each}
+        <h2>{project.fields.title}</h2>
+
+        <ul class="list--nostyle">
+          {#each project.fields.artists as artist}
+          <li>{artist.fields.service.fields.title} {artist.fields.name}</li>
+          {/each}
+        </ul>
+
+        <date>{year(project.fields.date)}</date>
       </aside>
     </a>
   </li>
@@ -32,5 +37,11 @@
   ol {
     list-style: none;
     padding: $base;
+
+    aside {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
   }
 </style>

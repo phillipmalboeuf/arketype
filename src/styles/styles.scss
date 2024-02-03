@@ -90,6 +90,16 @@ button:focus:not(:focus-visible) {
 	outline: none;
 }
 
+ul,
+ol {
+	padding-left: 1em;
+	
+	&.list--nostyle {
+		list-style: none;
+		padding-left: 0;
+	}
+}
+
 table {
 	width: 100%;
 	-webkit-border-horizontal-spacing: 0;

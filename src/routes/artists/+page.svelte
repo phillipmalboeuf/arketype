@@ -40,6 +40,14 @@
     padding: $base;
     display: flex;
     gap: $base;
+
+    a {
+      &.active {
+        &:before {
+          content: "● ";
+        }
+      }
+    }
   }
 
   ol {
