@@ -2,7 +2,15 @@ $base-font: 'FT System', sans-serif;
 $back-color: #fff;
 $front-color: #000;
 
-$base: 15px;
-$phone: 888px;
+$base: 16px;
+$scale: 1.25;
+$gap: $base * $scale;
+
+$max: 1220px;
+
+$mobile: 888px;
+$mobile_base: 14px;
+$mobile_scale: 1.25;
+$mobile_gap: $mobile_base * $mobile_scale;
 
 $number_of_columns: 12;

@@ -89,7 +89,7 @@
 		height: 100vh;
 		z-index: 1;
 
-		@media (max-width: $phone) {
+		@media (max-width: $mobile) {
 			height: 66vh;
 		}
 
@@ -105,7 +105,7 @@
 			aspect-ratio: 1.58823529;
 			outline: 10000px solid black;
 
-			@media (max-width: $phone) {
+			@media (max-width: $mobile) {
 				aspect-ratio: 0.83443709;
 			}
 		}
@@ -123,7 +123,7 @@
 				display: none;
 			}
 
-			@media (max-width: $phone) {
+			@media (max-width: $mobile) {
 				&:last-of-type {
 					display: block;
 				}
@@ -147,7 +147,7 @@
 		aspect-ratio: 1.77777;
 		transform: translate(-50%, -50%) scale(1.33);
 
-		@media (max-width: $phone) {
+		@media (max-width: $mobile) {
 			top: 33vh;
 			min-height: 66vh;
 		}
@@ -175,7 +175,7 @@
 				justify-content: end;
 				gap: $base * 1.5;
 
-				@media (max-width: $phone) {
+				@media (max-width: $mobile) {
 					gap: $base * 0.66;
 				}
 			}
@@ -200,7 +200,7 @@
 			}
 		}
 
-		@media (max-width: $phone) {
+		@media (max-width: $mobile) {
 			position: relative;
 			padding: $base * 0.5;
 			// align-items: flex-start;

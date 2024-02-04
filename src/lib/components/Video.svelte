@@ -3,7 +3,10 @@
   import type Player from 'vimeo__player'
 	// import Vimeo from 'vimeo__player'
   import { onMount } from 'svelte'
-	let player: Player
+	
+  export let half = false
+
+  let player: Player
 	let muted = true
 
 	onMount(async () => {
@@ -18,7 +21,7 @@
 	})
 </script>
 
-<figure>
+<figure class:half>
   {#if browser}
   <iframe title="Video" src="https://player.vimeo.com/video/858724565?h=0b37ea3820&autoplay=1&loop=1&portrait=0&muted=1&background=1&playsinline=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen id="video"></iframe>
   {/if}
@@ -43,27 +46,9 @@
     width: 100vw;
     height: 100vh;
 
-		// &:before,
-		// &:after {
-		// 	position: absolute;
-		// 	top: 50%;
-		// 	left: 50%;
-		// 	transform: translate(-50%, -50%);
-		// 	content: "";
-		// 	display: block;
-		// 	height: calc(100% - 2px);
-		// 	aspect-ratio: 1.58823529;
-		// 	outline: 10000px solid black;
-
-		// 	@media (max-width: $phone) {
-		// 		aspect-ratio: 0.83443709;
-		// 	}
-		// }
-
-		// &:after {
-		// 	height: auto;
-		// 	width: calc(100% - 2px);
-		// }
+    &.half {
+      height: 66vh;
+    }
 	}
 
 	iframe {

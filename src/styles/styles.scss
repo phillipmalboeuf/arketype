@@ -16,6 +16,15 @@ body {
 
 	font-family: $base-font;
 	font-size: $base;
+	line-height: $scale;
+	-webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+	@media (max-width: $mobile) {
+    font-size: $mobile_base;
+    line-height: $mobile_scale;
+  }
+
 	color: var(--front-color);
 	background-color: var(--back-color);
 
@@ -37,15 +46,52 @@ body {
 	}
 }
 
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+	font-weight: 350;
+	white-space: pre-line;
+}
+
 h1,
+.h1 {
+	font-size: $base * $scale * 4;
+
+	&.h1--huge {
+		font-size: $base * $scale * 8;
+	}
+}
+
 h2,
-p {
-	font-size: $base;
+.h2 {
+	font-size: $base * $scale * 3;
+}
+
+h3,
+.h3 {
+	font-size: $base * $scale * 2;
+}
+
+h4,
+.h4 {
+	font-size: $base * $scale * 1.5;
+}
+
+h5,
+.h5 {
+	font-size: $base * $scale;
+	font-weight: 500;
+}
+
+h6,
+.h6 {
+	font-size: $base * $scale * 0.666;
 	font-weight: normal;
+	text-transform: uppercase;
 }
 
 p {
-	line-height: 1.13333333;
+	line-height: $scale;
+	white-space: pre-line;
 }
 
 a {
@@ -55,15 +101,6 @@ a {
 
 a:hover {
 	text-decoration: underline;
-}
-
-h1 {
-	// font-size: 2rem;
-	// text-align: center;
-}
-
-h2 {
-	// font-size: 1rem;
 }
 
 input,
@@ -147,7 +184,7 @@ table {
   &.flex--gapped {
     --gap: #{$base};
 
-    @media (max-width: $phone) {
+    @media (max-width: $mobile) {
       --gap: #{$base/2};
     }
   }
@@ -158,13 +195,13 @@ table {
 
   &.flex--tight_gapped {
     --gap: #{$base/2};
-    @media (max-width: $phone) {
+    @media (max-width: $mobile) {
       --gap: #{$base/3};
     }
   }
 
   &.flex--tight_guttered_on_phone {
-    @media (max-width: $phone) {
+    @media (max-width: $mobile) {
       --gap: #{$base/3};
     }
   }

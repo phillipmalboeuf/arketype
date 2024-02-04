@@ -14,7 +14,7 @@
 
 <section>
   <header>
-    <h1 class="h2">{data.artist.fields.name}</h1>
+    <h1 class="h1--huge">{data.artist.fields.name}</h1>
   </header>
 </section>
 
