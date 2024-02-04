@@ -14,7 +14,7 @@
 
 <style lang="scss">
   footer {
-    background-color: var(--back-color);
+    // background-color: var(--back-color);
     padding: $base;
 
     display: flex;

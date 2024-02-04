@@ -9,11 +9,9 @@
 
 <table>
   {#each projects.items as project}
-  <tr>
+  <a href="/projects/{project.fields.id}" style={project.fields.color && `--hover: ${project.fields.color}`}>
     <td>
-      <a href="/projects/{project.fields.id}">
         <h2>{project.fields.title}</h2>
-      </a>
     </td>
 
     <td>
@@ -37,7 +35,7 @@
       </figure>
       {/if}
     </td>
-  </tr>
+  </a>
   {/each}
 </table>
 
@@ -48,6 +46,27 @@
 
     figure {
       display: none;
+    }
+
+    a {
+      display: table-row;
+      vertical-align: top;
+      text-decoration: none;
+      transition: color 333ms, opacity 333ms;
+
+      &:hover,
+      &:focus {
+        color: var(--hover);
+
+        ~ a {
+          opacity: 0.5;
+        }
+      }
+
+      &:has(~ a:hover),
+      &:has(~ a:focus) {
+        opacity: 0.5;
+      }
     }
   }
 </style>

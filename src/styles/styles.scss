@@ -24,26 +24,6 @@ body {
     font-size: $mobile_base;
     line-height: $mobile_scale;
   }
-
-	color: var(--front-color);
-	background-color: var(--back-color);
-
-	transition: color 333ms, background-color 333ms;
-
-	@media (prefers-color-scheme: dark) {
-		--front-color: #{$back-color};
-		--back-color: #{$front-color};
-
-		&:has(main.light) {
-			--front-color: #{$front-color};
-			--back-color: #{$back-color};
-		}
-	}
-
-	&:has(main.dark) {
-		--front-color: #{$back-color};
-		--back-color: #{$front-color};
-	}
 }
 
 h1, h2, h3, h4, h5, h6,
@@ -109,6 +89,7 @@ button {
 	color: inherit;
 	font-family: inherit;
 	text-transform: inherit;
+	line-height: $scale;
 	border: none;
 	background: none;
 	padding: 0;

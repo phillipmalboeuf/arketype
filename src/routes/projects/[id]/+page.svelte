@@ -6,9 +6,17 @@
   import { year } from '$lib/formatters'
 
   import { page } from '$app/stores'
+  import { onDestroy } from 'svelte'
 
   import type { PageData } from './$types' 
+  import { color } from '$lib/stores'
   export let data: PageData
+
+  $: data.project.fields.color && color.set(data.project.fields.color)
+
+  onDestroy(() => {
+    color.set(undefined)
+  })
 </script>
 
 <header>
@@ -53,6 +61,10 @@
   }
 
   header {
+    figure {
+      background-color: black;
+    }
+
     h1 {
       text-transform: uppercase;
       // text-align: center;

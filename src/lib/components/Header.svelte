@@ -36,6 +36,9 @@
     top: 0;
     background-color: var(--back-color);
     padding: $base;
+    z-index: 88;
+
+    transition: background-color 333ms;
 
     display: flex;
     gap: $base;

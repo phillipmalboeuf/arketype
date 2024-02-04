@@ -10,7 +10,7 @@
 <ol class="flex flex--gapped">
   {#each projects.items as project}
   <li class="col col--6of12">
-    <a href="/projects/{project.fields.id}">
+    <a style={project.fields.color && `--hover: ${project.fields.color}`} href="/projects/{project.fields.id}">
       {#if project.fields.thumbnail}
       <figure>
         <Media media={project.fields.thumbnail} small />
@@ -42,6 +42,32 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
+    }
+
+    a {
+      text-decoration: none;
+      transition: color 333ms;
+
+      &:hover,
+      &:focus {
+        color: var(--hover);
+      }
+    }
+
+    li {
+      transition: opacity 333ms;
+
+      &:has(a:hover),
+      &:has(a:focus) {
+        ~ li {
+          opacity: 0.5;
+        }
+      }
+
+      &:has(~ li > a:hover),
+      &:has(~ li > a:focus) {
+        opacity: 0.5;
+      }
     }
   }
 </style>
