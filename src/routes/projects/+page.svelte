@@ -1,7 +1,8 @@
 <script lang="ts">
+  import Content from '$lib/components/Content.svelte'
   import Media from '$lib/components/Media.svelte'
   import Projects from '$lib/components/Projects.svelte'
-  import Table from '$lib/components/Table.svelte';
+  import Table from '$lib/components/Table.svelte'
 
   import type { PageData } from './$types'
   export let data: PageData
@@ -21,6 +22,12 @@
     <a href="/projects?format=images{data.service ? `&service=${data.service.id}` : ''}" class:active={data.format && data.format === 'images'}>Images</a>
     <a href="/projects?format=list{data.service ? `&service=${data.service.id}` : ''}" class:active={data.format && data.format === 'list'}>List</a>
   </nav>
+
+  {#if data.page}
+  <section class="col col--12of12">
+    <Content content={data.page.fields.content} />
+  </section>
+  {/if}
 
   {#if data.format === 'list'}
   <Table projects={data.projects} />

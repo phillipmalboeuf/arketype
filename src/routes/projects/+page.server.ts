@@ -1,4 +1,4 @@
-import type { TypeProjectSkeleton } from '$lib/clients/content_types'
+import type { TypePageSkeleton, TypeProjectSkeleton } from '$lib/clients/content_types'
 import { content } from '$lib/clients/contentful'
 import type { Entry } from 'contentful'
 
@@ -30,15 +30,16 @@ export const load = (async ({ locals, url, params }) => {
     })
   })
 
-  const [projects] = await Promise.all([
-    // content.getEntries<TypeProjetSkeleton>({ content_type: "projet", include: 2, "fields.vedette": true, order: ["-fields.date"], limit: 3, ...filter ? { links_to_entry: services[filter].sys } : {} }),
+  const [projects, pages] = await Promise.all([
     content.getEntries<TypeProjectSkeleton>({ content_type: "project", include: 2, order: ["-fields.date"],  limit: 12, ...filter ? { links_to_entry: services[filter].sys } : {} }),
+    content.getEntries<TypePageSkeleton>({ content_type: "page", include: 2, "fields.id": "projects" }),
   ])
 
   return {
     service: filter && services[filter],
     format: format || 'images',
     projects,
-    services: Object.values(services).sort((a, b) => b.count - a.count)
+    services: Object.values(services).sort((a, b) => b.count - a.count),
+    page: pages.items[0]
   }
 })

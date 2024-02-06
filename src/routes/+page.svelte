@@ -40,10 +40,10 @@
 		window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })
 		projects()
 	}}>
-		<Logo />
+		<!-- <Logo /> -->
 	</button>
 
-	<Video />
+	<Video background />
 </header>
 
 {#if data?.status === 200}

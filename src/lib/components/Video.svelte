@@ -5,6 +5,7 @@
   import { onMount } from 'svelte'
 	
   export let half = false
+  export let background = false
 
   let player: Player
 	let muted = true
@@ -23,10 +24,11 @@
 
 <figure class:half>
   {#if browser}
-  <iframe title="Video" src="https://player.vimeo.com/video/858724565?h=0b37ea3820&autoplay=1&loop=1&portrait=0&muted=1&background=1&playsinline=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen id="video"></iframe>
+  <iframe title="Video" src="https://player.vimeo.com/video/858724565?h=0b37ea3820&autoplay=1&loop=1{background ? '&portrait=0&muted=1&background=1&playsinline=1' : ''}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen id="video"></iframe>
   {/if}
 
-	<footer>
+	{#if !background}
+  <footer>
 		<nav>
 			{#if player}
 			<button on:click|stopPropagation={() => {
@@ -37,6 +39,7 @@
 		</nav>
 
 	</footer>
+  {/if}
 </figure>
 
 <style lang="scss">

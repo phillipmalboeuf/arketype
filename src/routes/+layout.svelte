@@ -5,10 +5,18 @@
 	import Header from '$lib/components/Header.svelte'
 	import Footer from '$lib/components/Footer.svelte'
 
+	import { page } from '$app/stores'
+
 	import type { LayoutData } from './$types'
 	export let data: LayoutData
 </script>
 
+<svelte:head>
+	{#if $page.data.page}
+	<title>{$page.data.page.fields.title}</title>
+	<meta name="description" content={$page.data.page.fields.description} />
+	{/if}
+</svelte:head>
 
 <div style={!!$color && `--color: ${$color}`} class:dark={$dark} class:light={$dark !== undefined && !$dark}>
 	<Header header={data.header} />
