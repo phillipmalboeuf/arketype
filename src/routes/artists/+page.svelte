@@ -18,17 +18,17 @@
     {#each data.artists.items as artist}
     <li>
       <a href="/artists/{artist.fields.id}">
-        <h2>{artist.fields.name}</h2>
+        <h2 class="h1">{artist.fields.name}</h2>
+
+        {#if artist.fields.thumbnail}
+        <figure>
+          <Media media={artist.fields.thumbnail} small ar={0.666} />
+        </figure>
+        {/if}
 
         <aside>
           {artist.fields.service.fields.artist || artist.fields.service.fields.title}
         </aside>
-
-        {#if artist.fields.thumbnail}
-        <figure>
-          <Media media={artist.fields.thumbnail} small ar={1} />
-        </figure>
-        {/if}
       </a>
     </li>
     {/each}
@@ -53,12 +53,63 @@
   ol {
     list-style: none;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    // flex-wrap: wrap;
     // gap: $base;
 
     li {
-      width: 50%;
-      padding: $base;
+      a {
+        display: flex;
+        gap: $base;
+
+        h2 {
+          text-transform: uppercase;
+        }
+
+        figure {
+          width: 0%;
+          transition: width 333ms;
+
+          :global(img),
+          :global(video) {
+            aspect-ratio: none;
+            height: 100%;
+            object-fit: cover;
+            border-radius: $radius;
+          }
+        }
+
+        &:hover,
+        &:focus {
+          text-decoration: none;
+          
+          figure {
+            width: 10%;
+          }
+        }
+      }
+
+      &:nth-child(2n - 1) {
+        a {
+          figure {
+            order: -1;
+          }
+        }
+      }
+
+      transition: opacity 333ms;
+
+      &:has(a:hover),
+      &:has(a:focus) {
+        ~ li {
+          opacity: 0.333;
+        }
+      }
+
+      &:has(~ li > a:hover),
+      &:has(~ li > a:focus) {
+        opacity: 0.333;
+      }
     }
   }
 </style>
