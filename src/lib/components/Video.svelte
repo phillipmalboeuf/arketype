@@ -8,8 +8,13 @@
   export let background = false
 
   let player: Player
+	let paused = true
 	let muted = true
 	let ready = false
+	let hover = false
+
+	let top: number
+	let left: number
 
 	onMount(async () => {
 		if (browser) {
@@ -20,7 +25,7 @@
 			player = new Vimeo('video') as Player
 
 			function loaded () {
-				player.play()
+				background ? player.play() : player.pause()
 				ready = true
 			}
 
@@ -31,64 +36,91 @@
 
 <figure class:half class:ready>
   {#if browser}
-  <iframe title="Video" src="https://player.vimeo.com/video/858724565?h=0b37ea3820&autoplay=1&loop=1&background=1{background ? '&portrait=0&muted=1&playsinline=1' : ''}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen id="video"></iframe>
+  <iframe title="Video" src="https://player.vimeo.com/video/858724565?h=0b37ea3820&loop=1&background=1{background ? '&portrait=0&muted=1&playsinline=1&autoplay=1' : '&muted=0'}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen id="video"></iframe>
   {/if}
 
-	{#if !background}
-  <footer>
-		<nav>
-			{#if player}
-			<button on:click|stopPropagation={() => {
-				muted = !muted
-				player.setMuted(muted)
-			}}>Sound {#if muted}On{:else}Off{/if}</button>
-			{/if}
-		</nav>
-
-	</footer>
+	{#if !background && player}
+	<!-- <button on:click|stopPropagation={() => {
+		muted = !muted
+		player.setMuted(muted)
+	}}>Sound {#if muted}On{:else}Off{/if}</button> -->
+	<button class:hover on:pointerenter={() => hover = true} on:pointerleave={() => hover = false} on:pointermove={e => {
+		top = e.offsetY
+		left = e.offsetX
+	}} on:click|stopPropagation={() => {
+		if (paused) {
+			paused = false
+			player.play()
+		} else {
+			paused = true
+			player.pause()
+		}
+	}}><span style="top: {top}px; left: {left}px">{#if paused}● Play{:else}◼︎ Pause{/if}</span></button>
   {/if}
 </figure>
 
 <style lang="scss">
 
 	figure {
+		display: block;
 		position: relative;
-    width: 100%;
+    // width: 100%;
     height: 100vh;
 		opacity: 0;
-		will-change: opacity;
+		// will-change: opacity;
 		transition: opacity 3333ms;
+
+		&:before {
+			content: "";
+			
+		}
 
 		&.ready {
 			opacity: 1;
 		}
 
     &.half {
-      height: 66vh;
+			height: 66vh;
+
+			iframe {
+      	height: 66vh;
+			}
     }
 	}
 
 	iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
+    // position: absolute;
+    // top: 0;
+    // left: 0;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     object-fit: cover;
 	}
 
-	footer {
+	button {
+		cursor: none;
 		position: absolute;
-		bottom: 0;
+		top: 0;
 		left: 0;
-		z-index: 2;
 		width: 100%;
-		padding: $base * 2;
-		// mix-blend-mode: exclusion;
+		height: 100%;
+		z-index: 2;
+		opacity: 0;
+		transition: opacity 333ms;
 
-		display: flex;
-		align-items: flex-end;
-		justify-content: space-between;
-		gap: $base;
+		&.hover {
+			opacity: 1;
+		}
+		
+		@supports (mix-blend-mode: exclusion) {
+			color: white;
+			mix-blend-mode: exclusion;
+		}
+
+		span {
+			pointer-events: none;
+			position: absolute;
+			transform: translate(-50%, -50%);
+		}
 	}
 </style>

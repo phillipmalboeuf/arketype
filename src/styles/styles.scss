@@ -98,6 +98,7 @@ button {
 
 button {
 	cursor: pointer;
+	display: flex;
 
 	&:hover,
 	&:focus {
@@ -110,7 +111,7 @@ button:focus:not(:focus-visible) {
 }
 
 svg {
-	path {
+	path:not([stroke]) {
 		fill: currentColor;
 	}
 

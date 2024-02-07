@@ -62,6 +62,7 @@
 		margin-bottom: $base * 4;
 		height: 100vh;
 		background-color: var(--back-color);
+		transition: background-color 333ms;
 
 		&:not(.data) {
 			margin-bottom: 100vh;
@@ -76,6 +77,12 @@
 			z-index: 30;
 			border: none;
 			padding: 0 $base;
+
+			:global(.light) & {
+				color: var(--back-color);
+			}
+			
+			transition: color 333ms;
 
 			:global(svg) {
 				width: 100%;

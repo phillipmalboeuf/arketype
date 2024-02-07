@@ -24,12 +24,12 @@
   }
 
   video {
-    background-color: var(--background-inverse);
+    // background-color: var(--background-inverse);
     cursor: pointer;
   }
  
   audio::-webkit-media-controls-enclosure {
-    background-color: var(--background-inverse);
+    // background-color: var(--background-inverse);
   }
 </style>
 
