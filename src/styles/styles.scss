@@ -29,6 +29,7 @@ body {
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
 	font-weight: 350;
+	line-height: 1;
 	white-space: pre-line;
 }
 
@@ -108,6 +109,16 @@ button:focus:not(:focus-visible) {
 	outline: none;
 }
 
+svg {
+	path {
+		fill: currentColor;
+	}
+
+	line {
+		stroke: currentColor;
+	} 
+}
+
 ul,
 ol {
 	padding-left: 1em;
@@ -123,17 +134,18 @@ table {
 	-webkit-border-horizontal-spacing: 0;
 	-webkit-border-vertical-spacing: 0;
 
-	th {
-		text-align: center;
-		text-transform: uppercase;
-	}
-
 	td,
 	th {
 		border-top: 1px solid;
 		padding: $base * 0.5;
 		white-space: pre-line;
 		width: calc(100% / var(--length));
+	}
+
+	th {
+		text-align: left;
+		font-weight: normal;
+		border-color: transparent;
 	}
 
 	tr {

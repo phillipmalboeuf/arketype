@@ -37,9 +37,18 @@
 
 <style lang="scss">
   nav {
+    position: -webkit-sticky;
+    position: sticky;
+    top: $base * 3.25;
+    z-index: 2;
+    background-color: var(--back-color);
+    transition: background-color 333ms;
+
     padding: $base;
     display: flex;
     gap: $base;
+    border-top: 1px solid;
+    margin: 10vh 0;
 
     a {
       &.active {
@@ -60,14 +69,15 @@
     li {
       a {
         display: flex;
-        gap: $base;
+        // gap: $base;
 
         h2 {
           text-transform: uppercase;
+          font-size: 6vw;
         }
 
         figure {
-          width: 0%;
+          width: 0vw;
           transition: width 333ms;
 
           :global(img),
@@ -82,9 +92,9 @@
         &:hover,
         &:focus {
           text-decoration: none;
-          
+
           figure {
-            width: 10%;
+            width: 8vw;
           }
         }
       }

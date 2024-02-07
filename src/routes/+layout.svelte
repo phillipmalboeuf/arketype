@@ -12,7 +12,7 @@
 </script>
 
 <svelte:head>
-	{#if $page.data.page}
+	{#if $page.data.page?.fields}
 	<title>{$page.data.page.fields.title}</title>
 	<meta name="description" content={$page.data.page.fields.description} />
 	{/if}
@@ -25,7 +25,7 @@
 		<slot />
 	</main>
 
-	<Footer />
+	<Footer footer={data.footer} />
 </div>
 
 <style lang="scss">

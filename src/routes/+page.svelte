@@ -3,8 +3,8 @@
 	import { fade } from 'svelte/transition'
 
   import Logo from '$lib/components/Logo.svelte'
+	import Logotype from '$lib/components/Logotype.svelte'
   import Video from '$lib/components/Video.svelte'
-  
 
 	import ProjectsPage from './projects/+page.svelte'
 
@@ -40,7 +40,7 @@
 		window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })
 		projects()
 	}}>
-		<!-- <Logo /> -->
+		<Logotype />
 	</button>
 
 	<Video background />

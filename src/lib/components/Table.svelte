@@ -8,6 +8,12 @@
 </script>
 
 <table>
+  <tr>
+    <th>Project</th>
+    <th>Services</th>
+    <th>Client</th>
+    <th>Year</th>
+  </tr>
   {#each projects.items as project}
   <a href="/projects/{project.fields.id}" style={project.fields.color && `--hover: ${project.fields.color}`}>
     <td>

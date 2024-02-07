@@ -38,36 +38,54 @@
     list-style: none;
     padding: $base;
 
+    figure {
+      :global(img),
+      :global(video) {
+        border-radius: $radius;
+      }
+    }
+
     aside {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
+      margin: $base 0;
     }
 
     a {
       text-decoration: none;
       transition: color 333ms;
+      color: var(--hover);
 
       &:hover,
       &:focus {
-        color: var(--hover);
+        color: currentColor;
+
+        :global(img),
+        :global(video) {
+          filter: saturate(0);
+        }
+      }
+
+      h2 {
+        line-height: 1;
       }
     }
 
     li {
-      transition: opacity 333ms;
+      // transition: opacity 333ms;
 
-      &:has(a:hover),
-      &:has(a:focus) {
-        ~ li {
-          opacity: 0.5;
-        }
-      }
+      // &:has(a:hover),
+      // &:has(a:focus) {
+      //   ~ li {
+      //     opacity: 0.5;
+      //   }
+      // }
 
-      &:has(~ li > a:hover),
-      &:has(~ li > a:focus) {
-        opacity: 0.5;
-      }
+      // &:has(~ li > a:hover),
+      // &:has(~ li > a:focus) {
+      //   opacity: 0.5;
+      // }
     }
   }
 </style>
