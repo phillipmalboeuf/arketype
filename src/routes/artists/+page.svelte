@@ -8,10 +8,12 @@
 <main>
   <nav>
     {#if data.service}
-    <a href="/artists" class="button">Tous</a>
+    <a href="/artists">Tous</a>
+    {:else}
+    <strong>Filters</strong>
     {/if}
     {#each data.services as service}
-    <a href="/artists?service={service.id}" class="button" class:active={data.service && data.service.id === service.id}>{service.titre}</a>
+    <a href="/artists?service={service.id}" class:active={data.service && data.service.id === service.id}>{service.titre}</a>
     {/each}
   </nav>
   <ol>
@@ -51,9 +53,19 @@
     margin: 10vh 0;
 
     a {
-      &.active {
+      &:not(:first-child):before {
+        content: "● ";
+        opacity: 0;
+        transition: opacity 333ms;
+      }
+
+      &.active,
+      &:hover,
+      &:focus {
+        text-decoration: none;
+        
         &:before {
-          content: "● ";
+          opacity: 1;
         }
       }
     }

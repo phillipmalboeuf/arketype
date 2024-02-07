@@ -5,12 +5,13 @@
   import { year } from '$lib/formatters'
 
   export let projects: ContentfulCollection<Entry<TypeProjectSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string>>
+  export let tight = false
 </script>
 
-<ol class="flex flex--gapped">
+<ol class="flex flex--gapped" class:tight>
   {#each projects.items as project}
   <li class="col col--6of12">
-    <a style={project.fields.color && `--hover: ${project.fields.color}`} href="/projects/{project.fields.id}">
+    <a style={!tight && project.fields.color && `--hover: ${project.fields.color}`} href="/projects/{project.fields.id}">
       {#if project.fields.thumbnail}
       <figure>
         <Media media={project.fields.thumbnail} small />
@@ -18,7 +19,11 @@
       {/if}
 
       <aside>
+        {#if tight}
+        <h5>{project.fields.title}</h5>
+        {:else}
         <h2>{project.fields.title}</h2>
+        {/if}
 
         <ul class="list--nostyle">
           {#each project.fields.artists as artist}
@@ -56,6 +61,12 @@
       text-decoration: none;
       transition: color 333ms;
       color: var(--hover);
+
+      :global(img),
+      :global(video) {
+        transition: filter 333ms;
+        will-change: filter;
+      }
 
       &:hover,
       &:focus {

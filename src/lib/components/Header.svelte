@@ -52,9 +52,21 @@
         margin-left: auto;
       }
 
-      &.active {
+      &:not(:first-child):not(.locale) {
         &:before {
           content: "● ";
+          opacity: 0;
+          transition: opacity 333ms;
+        }
+      }
+
+      &.active,
+      &:hover,
+      &:focus {
+        text-decoration: none;
+
+        &:before {
+          opacity: 1 !important;
         }
       }
     }

@@ -9,6 +9,7 @@
 
   let player: Player
 	let muted = true
+	let ready = false
 
 	onMount(async () => {
 		if (browser) {
@@ -17,14 +18,20 @@
 			const Vimeo = (await import('@vimeo/player')).default 
 			
 			player = new Vimeo('video') as Player
-			player.play()
+
+			function loaded () {
+				player.play()
+				ready = true
+			}
+
+			player.on("loaded", loaded)
 		}
 	})
 </script>
 
-<figure class:half>
+<figure class:half class:ready>
   {#if browser}
-  <iframe title="Video" src="https://player.vimeo.com/video/858724565?h=0b37ea3820&autoplay=1&loop=1{background ? '&portrait=0&muted=1&background=1&playsinline=1' : ''}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen id="video"></iframe>
+  <iframe title="Video" src="https://player.vimeo.com/video/858724565?h=0b37ea3820&autoplay=1&loop=1&background=1{background ? '&portrait=0&muted=1&playsinline=1' : ''}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen id="video"></iframe>
   {/if}
 
 	{#if !background}
@@ -46,8 +53,15 @@
 
 	figure {
 		position: relative;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
+		opacity: 0;
+		will-change: opacity;
+		transition: opacity 3333ms;
+
+		&.ready {
+			opacity: 1;
+		}
 
     &.half {
       height: 66vh;

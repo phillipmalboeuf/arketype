@@ -75,7 +75,7 @@
 			height: 100%;
 			z-index: 30;
 			border: none;
-			padding: 0;
+			padding: 0 $base;
 
 			:global(svg) {
 				width: 100%;

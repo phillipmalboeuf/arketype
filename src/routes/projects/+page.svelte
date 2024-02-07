@@ -12,7 +12,9 @@
 <main class="flex">
   <nav class="col col--6of12">
     {#if data.service}
-    <a href="/projects{data.format ? `?format=${data.format}` : ''}">Tous</a>
+    <a href="/projects{data.format ? `?format=${data.format}` : ''}">All Works</a>
+    {:else}
+    <strong>Filters</strong>
     {/if}
     {#each data.services as service}
     <a href="/projects?service={service.id}{data.format ? `&format=${data.format}` : ''}" class:active={data.service && data.service.id === service.id}>{service.titre}</a>
@@ -20,11 +22,12 @@
   </nav>
 
   <nav class="col col--6of12">
+    <span></span>
     <a href="/projects?format=images{data.service ? `&service=${data.service.id}` : ''}" class:active={data.format === null || data.format === 'images'}>Images</a>
     <a href="/projects?format=list{data.service ? `&service=${data.service.id}` : ''}" class:active={data.format && data.format === 'list'}>List</a>
   </nav>
 
-  {#if !noContent && data.page && data.format === null}
+  {#if !noContent && data.page && data.format === null && data.service === null}
   <section class="content col col--12of12">
     <Content content={data.page.fields.content} />
   </section>
@@ -56,9 +59,19 @@
     margin: 10vh 0;
 
     a {
-      &.active {
+      &:not(:first-child):before {
+        content: "● ";
+        opacity: 0;
+        transition: opacity 333ms;
+      }
+
+      &.active,
+      &:hover,
+      &:focus {
+        text-decoration: none;
+        
         &:before {
-          content: "● ";
+          opacity: 1;
         }
       }
     }
