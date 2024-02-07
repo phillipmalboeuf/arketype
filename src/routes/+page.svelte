@@ -48,7 +48,7 @@
 
 {#if data?.status === 200}
 <main transition:fade={{ duration: 333 }}>
-	<ProjectsPage data={data.data} />
+	<ProjectsPage data={data.data} noContent />
 </main>
 {/if}
 

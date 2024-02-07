@@ -42,12 +42,20 @@
     {year(data.project.fields.date)}
     <Document body={data.project.fields.description} />
   </div>
+
+  {#if data.project.fields.media}
+  {#each data.project.fields.media as media, i}
+  <div class="col col--6of12 media media--{i}">
+    <Media {media} small />
+  </div>
+  {/each}
+  {/if}
 </main>
 
 {#if data.project.fields.related?.length}
 <footer>
   <nav>
-    <h3>Related Works</h3>
+    <h4>Related Works</h4>
     <a href="/projects">See more works</a>
   </nav>
   <Projects tight projects={{ total: data.project.fields.related.length, items: data.project.fields.related, skip: 0, limit: data.project.fields.related.length }} />
@@ -58,8 +66,7 @@
 
 <style lang="scss">
   header,
-  main,
-  footer {
+  main{
     padding: $base;
   }
 
@@ -115,12 +122,24 @@
       &.description {
         gap: $base;
       }
+
+      &.media {
+        border-top: none;
+        padding-top: 0;
+        padding-bottom: $base * 0.5;
+
+        &.media--1 {
+          width: 100%;
+        }
+      }
     }
   }
 
   footer {
+    margin-top: 10vw;
+
     nav {
-      padding: ($base * 0.5) 0 ($base * 4);
+      padding: ($base * 0.5) $base ($base);
       border-top: 1px solid;
 
       display: flex;

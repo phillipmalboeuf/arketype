@@ -56,7 +56,7 @@
     gap: $base;
     border-top: 1px solid;
 
-    margin: 10vh 0;
+    margin: 6vw 0;
 
     a {
       &:not(:first-child):before {

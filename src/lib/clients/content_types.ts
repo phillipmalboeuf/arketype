@@ -4,9 +4,12 @@ export interface TypeArtistFields {
     name: EntryFieldTypes.Symbol;
     id: EntryFieldTypes.Symbol;
     thumbnail?: EntryFieldTypes.AssetLink;
+    signature?: EntryFieldTypes.AssetLink;
+    media?: EntryFieldTypes.Array<EntryFieldTypes.AssetLink>;
     color?: EntryFieldTypes.Symbol;
     description?: EntryFieldTypes.RichText;
     service: EntryFieldTypes.EntryLink<TypeServiceSkeleton>;
+    links?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeLinkSkeleton>>;
 }
 
 export type TypeArtistSkeleton = EntrySkeletonType<TypeArtistFields, "artist">;
@@ -86,6 +89,7 @@ export interface TypeProjectFields {
     id: EntryFieldTypes.Symbol;
     date?: EntryFieldTypes.Date;
     thumbnail?: EntryFieldTypes.AssetLink;
+    media?: EntryFieldTypes.Array<EntryFieldTypes.AssetLink>;
     artists?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeArtistSkeleton>>;
     services?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeServiceSkeleton>>;
     client?: EntryFieldTypes.Symbol;

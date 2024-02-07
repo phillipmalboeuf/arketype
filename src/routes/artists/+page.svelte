@@ -50,7 +50,7 @@
     display: flex;
     gap: $base;
     border-top: 1px solid;
-    margin: 10vh 0;
+    margin: 6vw 0;
 
     a {
       &:not(:first-child):before {
@@ -81,32 +81,34 @@
     li {
       a {
         display: flex;
-        // gap: $base;
+        gap: 0;
+        transition: gap 333ms;
+        will-change: gap;
 
         h2 {
           text-transform: uppercase;
-          font-size: 6vw;
+          font-size: 7vw;
         }
 
         figure {
           width: 0vw;
           transition: width 333ms;
+          will-change: width;
 
           :global(img),
           :global(video) {
             aspect-ratio: none;
             height: 100%;
-            object-fit: cover;
-            border-radius: $radius;
           }
         }
 
         &:hover,
         &:focus {
+          gap: $base * 0.5;
           text-decoration: none;
 
           figure {
-            width: 8vw;
+            width: 9vw;
           }
         }
       }

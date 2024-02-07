@@ -13,13 +13,14 @@
   }
 </script>
 
-<style>
+<style lang="scss">
   img,
   video,
   audio {
     display: block;
     width: 100%;
     object-fit: cover;
+    border-radius: $radius;
   }
 
   video {

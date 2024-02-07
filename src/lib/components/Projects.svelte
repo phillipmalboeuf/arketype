@@ -44,10 +44,6 @@
     padding: $base;
 
     figure {
-      :global(img),
-      :global(video) {
-        border-radius: $radius;
-      }
     }
 
     aside {
