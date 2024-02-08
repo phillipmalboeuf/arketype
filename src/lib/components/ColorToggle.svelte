@@ -23,7 +23,7 @@
     '#1C7AF8'
   ]
 
-  let value = 50
+  let value = ((colors.length / 2) * 100) - 50
 
   function convert(col1: string, col2: string, p: number) {
     const rgb1 = parseInt(col1, 16);
