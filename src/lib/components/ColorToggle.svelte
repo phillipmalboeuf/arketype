@@ -1,7 +1,18 @@
 <script lang="ts">
+  import { browser } from '$app/environment'
+  import { onMount } from 'svelte'
+
   import { color, dark } from '$lib/stores'
 
   let hover = false
+
+  onMount(async () => {
+		if (browser) {
+      if ($dark === undefined && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        dark.set(true)
+      }
+    }
+  })
 
   const colors = [
     '#A67FEF',
@@ -38,24 +49,45 @@
   }
 </script>
 
-<form class:hover style="--gradient: {colors.join(', ')}" on:pointerenter={() => hover = true} on:pointerleave={() => hover = false}>
-  <input type="range" name="color" min="0" max="{100 * (colors.length - 1)}" bind:value on:input={e => {
-    const step = Math.floor(value / 100)
+<aside>
+  <form class:hover on:submit|preventDefault style="--gradient: {colors.join(', ')}" on:pointerenter={() => hover = true} on:pointerleave={() => hover = false}>
+    <input type="range" name="color" min="0" max="{100 * (colors.length - 1)}" bind:value on:input={e => {
+      const step = Math.floor(value / 100)
 
-    console.log(step, value % 100, value)
-    
-    if (step === colors.length - 1) {
-      color.set(colors[step])
-    } else {
-      color.set('#'+convert(colors[step + 1].replace('#', ''), colors[step].replace('#', ''), (value % 100) / 100))
-    }
-  }}>
+      console.log(step, value % 100, value)
+      
+      if (step === colors.length - 1) {
+        color.set(colors[step])
+      } else {
+        color.set('#'+convert(colors[step + 1].replace('#', ''), colors[step].replace('#', ''), (value % 100) / 100))
+      }
+    }}>
 
-  <button></button>
-</form>
+    <button></button>
+  </form>
+
+  <button aria-label={$dark ? 'Light' : 'Dark'} on:click={() => dark.set(!$dark)}>
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M7 13.5C10.5899 13.5 13.5 10.5899 13.5 7C13.5 3.41015 10.5899 0.5 7 0.5C3.41015 0.5 0.5 3.41015 0.5 7C0.5 10.5899 3.41015 13.5 7 13.5Z" stroke="currentColor" fill="none" />
+      <path d="M6.93701 0.800781L6.93701 13.3945L11.0762 12.0937L13.3491 8.99414V6.91211L12.8408 3.58398L11.0762 1.80664L8.21289 0.806641L6.93701 0.800781Z" fill="currentColor"/>
+    </svg>
+  </button>
+</aside>
 
 
 <style lang="scss">
+  aside {
+    display: flex;
+    gap: $base * 0.666;
+
+    @media (max-width: $mobile) {
+      width: 100%;
+      padding: $mobile_base * 0.5;
+      border-top: 1px solid;
+      justify-content: flex-end;
+    }
+  }
+
   form {
     position: relative;
     display: flex;
@@ -73,6 +105,11 @@
       height: 0.88em;
       border-radius: $radius;
       background: linear-gradient(0.25turn, var(--gradient));
+
+      @media (max-width: $mobile) {
+        opacity: 1 !important;
+        width: $base * 10;
+      }
     }
 
     button {
@@ -88,6 +125,10 @@
       height: 0.88em;
       border-radius: $radius;
       background: linear-gradient(0.5turn, var(--gradient));
+
+      @media (max-width: $mobile) {
+        opacity: 0 !important;
+      }
     }
 
     &.hover {

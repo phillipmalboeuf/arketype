@@ -29,6 +29,10 @@
     padding: $base;
     margin-top: 30vh;
 
+    @media (max-width: $mobile) {
+      padding: $mobile_base;
+    }
+
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;

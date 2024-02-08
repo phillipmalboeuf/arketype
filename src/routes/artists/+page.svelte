@@ -52,6 +52,10 @@
     border-top: 1px solid;
     margin: 6vw 0;
 
+    @media (max-width: $mobile) {
+      position: static;
+    }
+
     a {
       &:not(:first-child):before {
         content: "● ";
@@ -85,30 +89,36 @@
         transition: gap 333ms;
         will-change: gap;
 
-        h2 {
-          text-transform: uppercase;
-          font-size: 7vw;
-        }
-
-        figure {
-          width: 0vw;
-          transition: width 333ms;
-          will-change: width;
-
-          :global(img),
-          :global(video) {
-            aspect-ratio: none;
-            height: 100%;
-          }
-        }
-
         &:hover,
         &:focus {
-          gap: $base * 0.5;
           text-decoration: none;
+        }
+
+        @media (min-width: $mobile) {
+          h2 {
+            text-transform: uppercase;
+            font-size: 7vw;
+          }
 
           figure {
-            width: 9vw;
+            width: 0vw;
+            transition: width 333ms;
+            will-change: width;
+
+            :global(img),
+            :global(video) {
+              aspect-ratio: none;
+              height: 100%;
+            }
+          }
+
+          &:hover,
+          &:focus {
+            gap: $base * 0.5;
+
+            figure {
+              width: 9vw;
+            }
           }
         }
       }
@@ -133,6 +143,19 @@
       &:has(~ li > a:hover),
       &:has(~ li > a:focus) {
         opacity: 0.333;
+      }
+
+      @media (max-width: $mobile) {
+        figure {
+          display: none;
+        }
+
+        a {
+          flex-direction: column;
+          gap: $mobile_base * 4;
+          padding: ($mobile_base * 0.5) 0;
+          border-top: 1px solid;
+        }
       }
     }
   }

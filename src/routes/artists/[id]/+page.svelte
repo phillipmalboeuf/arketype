@@ -68,6 +68,10 @@
   section {
     padding: $base;
 
+    @media (max-width: $mobile) {
+      padding: $mobile_base;
+    }
+
     header {
       margin-top: 8vw;
     }
@@ -128,6 +132,45 @@
           display: flex;
           flex-wrap: wrap;
           gap: $base;
+        }
+
+        @media (max-width: $mobile) {
+          position: relative;
+          flex-wrap: wrap;
+          margin-top: 50vw;
+          gap: $mobile_base * 2;
+
+          h3,
+          aside,
+          figure,
+          nav {
+            flex: none;
+          }
+
+          h3 {
+            order: -2;
+          }
+
+          nav {
+            flex: 1;
+            justify-content: flex-end;
+            order: -1;
+          }
+
+          aside {
+            width: 100%;
+          }
+
+          figure {
+            position: absolute;
+            bottom: calc(100% + 25vw);
+            width: 50vw;
+            right: 0;
+
+            :global(img) {
+              width: 100%;
+            }
+          }
         }
       }
     }

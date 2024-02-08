@@ -10,7 +10,7 @@
 </script>
 
 <main class="flex">
-  <nav class="col col--6of12">
+  <nav class="col col--6of12 col--mobile--12of12">
     {#if data.service}
     <a href="/projects{data.format ? `?format=${data.format}` : ''}">All Works</a>
     {:else}
@@ -21,8 +21,8 @@
     {/each}
   </nav>
 
-  <nav class="col col--6of12">
-    <span></span>
+  <nav class="col col--6of12 col--mobile--12of12">
+    <span>Work</span>
     <a href="/projects?format=images{data.service ? `&service=${data.service.id}` : ''}" class:active={data.format === null || data.format === 'images'}>Images</a>
     <a href="/projects?format=list{data.service ? `&service=${data.service.id}` : ''}" class:active={data.format && data.format === 'list'}>List</a>
   </nav>
@@ -53,10 +53,15 @@
 
     padding: $base;
     display: flex;
+    flex-wrap: wrap;
     gap: $base;
     border-top: 1px solid;
 
     margin: 6vw 0;
+
+    @media (max-width: $mobile) {
+      position: static;
+    }
 
     a {
       &:not(:first-child):before {
@@ -78,6 +83,17 @@
 
     &:last-of-type {
       justify-content: flex-end;
+
+      @media (min-width: $mobile) {
+        span {
+          font-size: 0;
+        }
+      }
+
+      @media (max-width: $mobile) {
+        order: -1;
+        justify-content: flex-start;
+      }
     }
   }
 
@@ -86,6 +102,11 @@
     position: sticky;
     top: $base * 3.333;
     margin-top: -15vh;
+
+    @media (max-width: $mobile) {
+      position: static;
+      margin-top: 0;
+    }
   }
 
   .projects {

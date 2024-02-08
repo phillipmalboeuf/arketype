@@ -68,6 +68,10 @@
   header,
   main{
     padding: $base;
+
+    @media (max-width: $mobile) {
+      padding: $mobile_base;
+    }
   }
 
   header {
@@ -78,7 +82,7 @@
     h1 {
       text-transform: uppercase;
       // text-align: center;
-      line-height: 1;
+      // line-height: 1;
       
       display: flex;
       flex-direction: column;
@@ -121,6 +125,10 @@
 
       &.description {
         gap: $base;
+
+        @media (max-width: $mobile) {
+          width: 100%;
+        }
       }
 
       &.media {

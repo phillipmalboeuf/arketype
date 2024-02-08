@@ -37,30 +37,51 @@ h1,
 .h1 {
 	font-size: $base * $scale * 4;
 
+	@media (max-width: $mobile) {
+    font-size: $mobile_base * $mobile_scale * 3;
+  }
+
 	&.h1--huge {
-		font-size: $base * $scale * 8;
+		font-size: 14vw;
+		line-height: 0.88;
 	}
 }
 
 h2,
 .h2 {
 	font-size: $base * $scale * 3;
+
+	@media (max-width: $mobile) {
+    font-size: $mobile_base * $mobile_scale * 2;
+  }
 }
 
 h3,
 .h3 {
 	font-size: $base * $scale * 2;
+
+	@media (max-width: $mobile) {
+    font-size: $mobile_base * $mobile_scale * 1.5;
+  }
 }
 
 h4,
 .h4 {
 	font-size: $base * $scale * 1.5;
+
+	@media (max-width: $mobile) {
+    font-size: $mobile_base * $mobile_scale * 1;
+  }
 }
 
 h5,
 .h5 {
 	font-size: $base * $scale;
 	font-weight: 500;
+
+	@media (max-width: $mobile) {
+    font-size: $mobile_base * $mobile_scale * 1;
+  }
 }
 
 h6,
@@ -208,6 +229,14 @@ table {
         $adjust: calc(var(--gap) / #{$number_of_columns / $i});
         width: calc(#{$width} - var(--gap) + #{$adjust});
        }
+
+			@media (max-width: $mobile) {
+				&.col--mobile--#{$i}of#{$number_of_columns} {
+					$width: (100% / $number_of_columns * $i);
+					$adjust: calc(var(--gap) / #{$number_of_columns / $i});
+					width: calc(#{$width} - var(--gap) + #{$adjust});
+				}
+			}
     }
 
     @for $i from 1 through 3 { 

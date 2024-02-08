@@ -10,7 +10,7 @@
 
 <ol class="flex flex--gapped" class:tight>
   {#each projects.items as project}
-  <li class="col col--6of12">
+  <li class="col col--6of12 col--mobile--12of12">
     <a style={!tight && project.fields.color && `--hover: ${project.fields.color}`} href="/projects/{project.fields.id}">
       {#if project.fields.thumbnail}
       <figure>

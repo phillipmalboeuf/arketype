@@ -26,11 +26,11 @@
 </svelte:head>
 
 <svelte:window on:scroll={(e) => {
-	if (href && e.currentTarget.scrollY <= 0) {
+	if (e.currentTarget.scrollY > 100) {
+		projects()
+	} else if (href) {
 		replaceState('/', {})
 		href = undefined
-	} else {
-		projects()
 	}
 }} />
 
