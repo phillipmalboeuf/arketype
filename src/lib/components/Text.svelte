@@ -8,7 +8,7 @@
   export let item: Entry<TypeTextSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">
 </script>
 
-<main id={item.fields.id}>
+<main class="text" id={item.fields.id}>
 
   {#if item.fields.title}
   <h3>{item.fields.title}</h3>

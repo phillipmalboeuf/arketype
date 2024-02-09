@@ -10,6 +10,12 @@
 </script>
 
 <main class="flex">
+  {#if !noContent && data.page && data.format === null && data.service === null}
+  <section class="content col col--12of12">
+    <Content content={data.page.fields.content} />
+  </section>
+  {/if}
+
   <nav class="col col--6of12 col--mobile--12of12">
     {#if data.service}
     <a href="/projects{data.format ? `?format=${data.format}` : ''}">All Works</a>
@@ -26,12 +32,6 @@
     <a href="/projects?format=images{data.service ? `&service=${data.service.id}` : ''}" class:active={data.format === null || data.format === 'images'}>Images</a>
     <a href="/projects?format=list{data.service ? `&service=${data.service.id}` : ''}" class:active={data.format && data.format === 'list'}>List</a>
   </nav>
-
-  {#if !noContent && data.page && data.format === null && data.service === null}
-  <section class="content col col--12of12">
-    <Content content={data.page.fields.content} />
-  </section>
-  {/if}
 
   <section class="projects col col--12of12">
     {#if data.format === 'list'}
@@ -98,14 +98,11 @@
   }
 
   .content {
-    position: -webkit-sticky;
-    position: sticky;
-    top: $base * 3.333;
-    margin-top: -15vh;
+    margin: 6vw 0 0;
 
-    @media (max-width: $mobile) {
-      position: static;
-      margin-top: 0;
+    :global(.text) {
+      max-width: $base * 33;
+      margin-left: 20vw;
     }
   }
 

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Content from '$lib/components/Content.svelte';
   import Media from '$lib/components/Media.svelte'
 
   import type { PageData } from './$types'
@@ -6,6 +7,12 @@
 </script>
 
 <main>
+  {#if data.page && data.service === null}
+  <section class="content">
+    <Content content={data.page.fields.content} />
+  </section>
+  {/if}
+
   <nav>
     {#if data.service}
     <a href="/artists">Tous</a>
@@ -72,6 +79,15 @@
           opacity: 1;
         }
       }
+    }
+  }
+
+  .content {
+    margin: 6vw 0 0;
+
+    :global(.text) {
+      max-width: $base * 33;
+      margin-left: 20vw;
     }
   }
 

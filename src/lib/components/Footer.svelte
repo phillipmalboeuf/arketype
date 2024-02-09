@@ -41,7 +41,11 @@
 
 <style lang="scss">
   footer {
-    // background-color: var(--back-color);
+    position: relative;
+    z-index: 300;
+    background-color: var(--back-color);
+    transition: background-color 333ms;
+
     padding: $base;
     margin-top: 30vh;
 

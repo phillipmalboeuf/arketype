@@ -80,6 +80,7 @@
         width: 100%;
         min-height: 50vh;
         background-color: var(--back-color);
+        transition: background-color 333ms;
 
         flex-direction: column;
         gap: $mobile_base * 2;
