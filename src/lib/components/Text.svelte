@@ -26,5 +26,10 @@
     display: flex;
     flex-direction: column;
     gap: $base;
+
+    :global(hr),
+    :global(hr + p) {
+      opacity: 0.5;
+    }
   }
 </style>

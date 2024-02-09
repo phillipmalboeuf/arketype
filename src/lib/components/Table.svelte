@@ -34,13 +34,13 @@
       {year(project.fields.date)}
     </td>
 
-    <!-- <td>
+    <td>
       {#if project.fields.thumbnail}
       <figure>
         <Media media={project.fields.thumbnail} small />
       </figure>
       {/if}
-    </td> -->
+    </td>
   </a>
   {/each}
 </table>
@@ -59,7 +59,9 @@
     }
 
     figure {
-      display: none;
+      width: 10vw;
+      opacity: 0;
+      transition: opacity 333ms;
     }
 
     a {
@@ -71,6 +73,10 @@
       &:hover,
       &:focus {
         color: var(--hover);
+
+        figure {
+          opacity: 1;
+        }
 
         ~ a {
           opacity: 0.5;
@@ -85,7 +91,7 @@
       @media (max-width: $mobile) {
         display: flex;
         flex-wrap: wrap;
-        padding-bottom: $mobile_base;
+        padding-bottom: $mobile_base * 0.5;
 
         td {
 
@@ -99,13 +105,17 @@
             flex: 2;
           }
 
-          &:nth-last-child(2) {
+          &:nth-last-child(3) {
             flex: 1;
             order: -1;
           }
 
-          &:nth-last-child(1) {
+          &:nth-last-child(2) {
             flex: 1;
+          }
+
+          &:nth-last-child(1) {
+            display: none;
           }
         }
       }

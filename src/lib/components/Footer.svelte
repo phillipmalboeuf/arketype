@@ -68,6 +68,24 @@
       }
     }
 
+    a {
+      transition: opacity 333ms;
+      
+      &:hover,
+      &:focus {
+        text-decoration: none;
+        
+        ~ a {
+          opacity: 0.333;
+        }
+      }
+
+      &:has(~ a:hover),
+      &:has(~ a:focus) {
+        opacity: 0.333;
+      }
+    }
+
     .social,
     .contact {
       display: flex;
