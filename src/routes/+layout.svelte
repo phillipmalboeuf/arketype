@@ -25,7 +25,7 @@
 		<slot />
 	</main>
 
-	<Footer footer={data.footer} />
+	<Footer footer={data.footer} social={data.social} contact={data.contact} />
 </div>
 
 <style lang="scss">

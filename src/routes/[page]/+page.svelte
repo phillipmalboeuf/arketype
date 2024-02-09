@@ -16,7 +16,7 @@
 
 <style lang="scss">
   figure {
-    position: absolute;
+    position: fixed;
     z-index: 200;
     top: 0;
     left: 0;
