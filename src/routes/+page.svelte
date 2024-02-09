@@ -6,18 +6,18 @@
 	import Logotype from '$lib/components/Logotype.svelte'
   import Video from '$lib/components/Video.svelte'
 
-	import ProjectsPage from './projects/+page.svelte'
+	// import ProjectsPage from './projects/+page.svelte'
 
 	let data
-	let href: string
+	// let href: string
 
-	const projects = async () => {
-		if (href) return
+	// const projects = async () => {
+	// 	if (href) return
 
-		href = '/projects'
-		pushState(href, {})
-		data = await preloadData(href)
-	}
+	// 	href = '/projects'
+	// 	pushState(href, {})
+	// 	data = await preloadData(href)
+	// }
 </script>
 
 <svelte:head>
@@ -25,20 +25,20 @@
 	<meta name="description" content="Arketype post-production" />
 </svelte:head>
 
-<svelte:window on:scroll={(e) => {
+<!-- <svelte:window on:scroll={(e) => {
 	if (e.currentTarget.scrollY > 100) {
 		projects()
 	} else if (href) {
 		replaceState('/', {})
 		href = undefined
 	}
-}} />
+}} /> -->
 
 <header class:data>
 
 	<button on:click={() => {
 		window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })
-		projects()
+		// projects()
 	}}>
 		<Logotype />
 	</button>
@@ -46,11 +46,12 @@
 	<Video background />
 </header>
 
+<!-- 
 {#if data?.status === 200}
 <main transition:fade={{ duration: 333 }}>
 	<ProjectsPage data={data.data} noContent />
 </main>
-{/if}
+{/if} -->
 
 
 <style lang="scss">
@@ -64,9 +65,9 @@
 		background-color: var(--back-color);
 		transition: background-color 333ms;
 
-		&:not(.data) {
-			margin-bottom: 100vh;
-		}
+		// &:not(.data) {
+		// 	margin-bottom: 100vh;
+		// }
 
 		button {
 			position: absolute;
