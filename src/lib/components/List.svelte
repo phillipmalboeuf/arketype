@@ -11,11 +11,11 @@
 </script>
 
 <main id={item.fields.id}>
-  {#if item.fields.title}
-  <h2>{item.fields.title}</h2>
-  {/if}
-
   <ol>
+    {#if item.fields.title}
+    <li><h3>{item.fields.title}</h3></li>
+    {/if}
+
     {#each item.fields.items as i}
     <li>
       {#if isTypeText(i)}
@@ -28,12 +28,36 @@
 
 <style lang="scss">
   main {
-    display: flex;
-    gap: $base;
+    margin-top: 5vw;
+    // display: flex;
+    // gap: $base;
 
     ol {
       list-style: none;
       padding-left: 0;
+
+      display: flex;
+      gap: $base;
+      width: 100%;
+
+      @media (max-width: $mobile) {
+        flex-wrap: wrap;
+      }
+
+      li {
+        flex: 1;
+        padding: ($base*0.5) 0;
+        border-top: 1px solid;
+
+        @media (max-width: $mobile) {
+          flex: none;
+          width: 100%;
+
+          &:not(:first-child) {
+            border-top: none;
+          }
+        }
+      }
     }
   }
 </style>

@@ -11,7 +11,7 @@
 <main id={item.fields.id}>
 
   {#if item.fields.title}
-  <h2>{item.fields.title}</h2>
+  <h3>{item.fields.title}</h3>
   {/if}
 
   {#if item.fields.body}
