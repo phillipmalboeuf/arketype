@@ -79,13 +79,6 @@
   aside {
     display: flex;
     gap: $base * 0.666;
-
-    @media (max-width: $mobile) {
-      width: 100%;
-      padding: $mobile_base * 0.5;
-      border-top: 1px solid;
-      justify-content: flex-end;
-    }
   }
 
   form {

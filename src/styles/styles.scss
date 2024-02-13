@@ -103,7 +103,7 @@ a {
 }
 
 a:hover {
-	text-decoration: underline;
+	text-decoration: none;
 }
 
 input,
@@ -124,7 +124,7 @@ button {
 
 	&:hover,
 	&:focus {
-		text-decoration: underline;
+		text-decoration: none;
 	}
 }
 

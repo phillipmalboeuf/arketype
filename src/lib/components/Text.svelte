@@ -31,5 +31,11 @@
     :global(hr + p) {
       opacity: 0.5;
     }
+
+    section {
+      display: flex;
+      flex-direction: column;
+      gap: $base;
+    }
   }
 </style>

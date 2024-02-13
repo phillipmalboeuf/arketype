@@ -6,7 +6,11 @@ import type { Entry } from 'contentful'
 
 export const load = (async ({ locals, url, params }) => {
   const [page] = await Promise.all([
-    {}
+    {
+      fields: {
+        id: 'home'
+      }
+    }
     // content.getEntry<TypePageSkeleton>('2AOPCu0AzgqwVGax55V4a4', { include: 2, locale: { 'en': 'en-US' }[params.locale] || 'fr-CA' }),
     // contentful.getEntry<Page>('1mriyecFg4Yu8vtPwuNnCh', { include: 3, locale: { 'en': 'en-US' }[params.locale] || 'fr-CA' }),
     // contentful.getEntries<Film>({ content_type: 'film', 'fields.director[exists]': true, 'fields.tags': 'recent', order: ['-fields.publishedDate'], locale: { 'en': 'en-US' }[params.locale] || 'fr-CA' }),

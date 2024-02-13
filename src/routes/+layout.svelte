@@ -19,7 +19,7 @@
 </svelte:head>
 
 <div style={!!$color && `--color: ${$color}`} class:dark={$dark} class:light={$dark !== undefined && !$dark}>
-	<Header header={data.header} />
+	{#if !$page.data.page || $page.data.page?.fields.id !== 'home'}<Header header={data.header} />{/if}
 
 	<main>
 		<slot />

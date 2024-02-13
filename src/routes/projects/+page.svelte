@@ -16,7 +16,7 @@
   </section>
   {/if}
 
-  <nav class="col col--6of12 col--mobile--12of12">
+  <nav class="col col--9of12 col--mobile--12of12">
     {#if data.service}
     <a href="/projects{data.format ? `?format=${data.format}` : ''}">All Works</a>
     {:else}
@@ -27,7 +27,7 @@
     {/each}
   </nav>
 
-  <nav class="col col--6of12 col--mobile--12of12">
+  <nav class="col col--3of12 col--mobile--12of12">
     <span>Work</span>
     <a href="/projects?format=images{data.service ? `&service=${data.service.id}` : ''}" class:active={data.format === null || data.format === 'images'}>Images</a>
     <a href="/projects?format=list{data.service ? `&service=${data.service.id}` : ''}" class:active={data.format && data.format === 'list'}>List</a>
@@ -54,7 +54,7 @@
     padding: $base;
     display: flex;
     flex-wrap: wrap;
-    gap: $base;
+    gap: $base * 2;
     border-top: 1px solid;
 
     margin: 6vw 0;
@@ -81,6 +81,16 @@
       }
     }
 
+    @media (min-width: $mobile) {
+      &:first-of-type {
+        
+        > a:first-child,
+        > strong:first-child {
+          width: 15%;
+        }
+      }
+    }
+
     &:last-of-type {
       justify-content: flex-end;
 
@@ -98,11 +108,12 @@
   }
 
   .content {
+    order: -2;
     margin: 6vw 0 0;
 
     :global(.text) {
       max-width: $base * 33;
-      margin-left: 20vw;
+      @media (min-width: $mobile) { margin-left: 20vw; }
     }
   }
 

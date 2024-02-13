@@ -80,6 +80,16 @@
         }
       }
     }
+
+    @media (min-width: $mobile) {
+      &:first-of-type {
+        
+        > a:first-child,
+        > strong:first-child {
+          width: 12.5%;
+        }
+      }
+    }
   }
 
   .content {
@@ -87,7 +97,7 @@
 
     :global(.text) {
       max-width: $base * 33;
-      margin-left: 20vw;
+      @media (min-width: $mobile) { margin-left: 20vw; }
     }
   }
 

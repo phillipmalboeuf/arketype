@@ -6,11 +6,11 @@
   export let data: PageData
 </script>
 
-{#if data.page.fields.id === "about"}
+<!-- {#if data.page.fields.id === "about"}
 <figure>
   <Letters />
 </figure>
-{/if}
+{/if} -->
 
 <Content content={data.page.fields.content} />
 

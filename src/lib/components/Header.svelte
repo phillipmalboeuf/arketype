@@ -88,6 +88,13 @@
 
         transform: translateY(-100%);
         transition: transform 666ms;
+
+        :global(aside) {
+          width: 100%;
+          padding: $mobile_base * 0.5;
+          border-top: 1px solid;
+          justify-content: flex-end;
+        }
       }
 
       a {
