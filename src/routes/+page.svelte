@@ -126,7 +126,7 @@
 			> button {
 				display: inline;
 				text-align: left;
-				flex: 6;
+				flex: 7;
 				
 				&:before {
 					content: "● ";
