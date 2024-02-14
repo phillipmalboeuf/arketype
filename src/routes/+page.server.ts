@@ -3,8 +3,9 @@
 // import type { TypePageSkeleton } from '$lib/clients/content_types'
 import { content } from '$lib/clients/contentful'
 import type { Entry } from 'contentful'
+import { load as projectsLoad } from './projects/+page.server'
 
-export const load = (async ({ locals, url, params }) => {
+export const load = (async (r) => {
   const [page] = await Promise.all([
     {
       fields: {
@@ -16,7 +17,16 @@ export const load = (async ({ locals, url, params }) => {
     // contentful.getEntries<Film>({ content_type: 'film', 'fields.director[exists]': true, 'fields.tags': 'recent', order: ['-fields.publishedDate'], locale: { 'en': 'en-US' }[params.locale] || 'fr-CA' }),
   ])
 
+  const projects = await projectsLoad({
+    ...r,
+    route: {
+      ...r.route,
+      id: '/projects'
+    }
+  })
+
   return {
     page,
+    projects
   }
 })

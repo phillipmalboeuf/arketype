@@ -12,9 +12,11 @@
 	import ProjectsPage from './projects/+page.svelte'
   import ColorToggle from '$lib/components/ColorToggle.svelte'
   import Header from '$lib/components/Header.svelte'
-  import Shapes from '$lib/components/Shapes.svelte';
+  import Shapes from '$lib/components/Shapes.svelte'
 
-	let data
+	import type { PageData } from './$types'
+  export let data: PageData
+
 	let href: string
 	let hidden = false
 	let innerHeight: number
@@ -26,8 +28,8 @@
 		if (href) return
 
 		href = '/projects'
-		pushState(href, {})
-		data = await preloadData(href)
+		replaceState(href, {})
+		// data = await preloadData(href)
 	}
 </script>
 
@@ -53,7 +55,7 @@
 <Shapes type="work" />
 
 {#if !hidden}
-<header class:data>
+<header>
 	<nav>
 		<a href="/">Arketype</a>
 		<button on:click={() => {
@@ -76,10 +78,11 @@
 
 <Header header={$page.data.header} />
 
-{#if data?.status === 200}
-<main transition:fade={{ duration: 333 }}>
-	<ProjectsPage data={data.data} noShapes />
-</main>
+{#if data?.projects}
+<ProjectsPage data={{
+	...data,
+	...data.projects
+}} noShapes />
 {/if}
 
 
