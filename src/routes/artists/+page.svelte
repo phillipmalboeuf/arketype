@@ -1,10 +1,13 @@
 <script lang="ts">
-  import Content from '$lib/components/Content.svelte';
+  import Content from '$lib/components/Content.svelte'
   import Media from '$lib/components/Media.svelte'
+  import Shapes from '$lib/components/Shapes.svelte'
 
   import type { PageData } from './$types'
   export let data: PageData
 </script>
+
+<Shapes type="artists" />
 
 <main>
   {#if data.page && data.service === null}

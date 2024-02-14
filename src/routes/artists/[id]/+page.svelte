@@ -1,16 +1,17 @@
 <script lang="ts">
   import Media from '$lib/components/Media.svelte'
   import Projects from '$lib/components/Projects.svelte'
+  import Shapes from '$lib/components/Shapes.svelte'
   import Document from '$lib/components/document/index.svelte'
   import { year } from '$lib/formatters'
 
   import { page } from '$app/stores'
 
   import type { PageData } from './$types'
-  
   export let data: PageData
 </script>
 
+<Shapes type="artists" />
 
 <section>
   <header>

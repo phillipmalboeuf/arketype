@@ -3,6 +3,7 @@
   import Document from '$lib/components/document/index.svelte'
   import Projects from '$lib/components/Projects.svelte'
   import Video from '$lib/components/Video.svelte'
+  import Shapes from '$lib/components/Shapes.svelte'
   import { year } from '$lib/formatters'
 
   import { page } from '$app/stores'
@@ -18,6 +19,8 @@
     color.set(undefined)
   })
 </script>
+
+<Shapes type="work" />
 
 <header>
   <figure>

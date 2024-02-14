@@ -12,6 +12,7 @@
 	import ProjectsPage from './projects/+page.svelte'
   import ColorToggle from '$lib/components/ColorToggle.svelte'
   import Header from '$lib/components/Header.svelte'
+  import Shapes from '$lib/components/Shapes.svelte';
 
 	let data
 	let href: string
@@ -49,6 +50,8 @@
 	// }
 }} />
 
+<Shapes type="work" />
+
 {#if !hidden}
 <header class:data>
 	<nav>
@@ -58,7 +61,7 @@
 			player.setMuted(muted)
 		}}>Sound {#if muted}On{:else}Off{/if}</button>
 
-		<ColorToggle />
+		<!-- <ColorToggle /> -->
 	</nav>
 
 	<button class="scroll" on:click={() => {
@@ -75,7 +78,7 @@
 
 {#if data?.status === 200}
 <main transition:fade={{ duration: 333 }}>
-	<ProjectsPage data={data.data} />
+	<ProjectsPage data={data.data} noShapes />
 </main>
 {/if}
 
@@ -88,7 +91,7 @@
 		// margin-top: $base * -4;
 		margin-bottom: 0;
 		height: 100vh;
-		background-color: var(--back-color);
+		background-color: $front-color;
 		transition: background-color 333ms;
 
 		// &:not(.data) {
@@ -106,6 +109,11 @@
 			gap: $base;
 			padding: $base;
 			width: 100%;
+			color: $back-color;
+
+			> :global(figure) {
+				background-color: $front-color;
+			}
 
 			> a {
 				text-transform: uppercase;

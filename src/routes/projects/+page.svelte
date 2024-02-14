@@ -2,12 +2,18 @@
   import Content from '$lib/components/Content.svelte'
   import Media from '$lib/components/Media.svelte'
   import Projects from '$lib/components/Projects.svelte'
+  import Shapes from '$lib/components/Shapes.svelte'
   import Table from '$lib/components/Table.svelte'
 
   import type { PageData } from './$types'
   export let data: PageData
   export let noContent = false
+  export let noShapes = false
 </script>
+
+{#if !noShapes}
+<Shapes type="work" />
+{/if}
 
 <main class="flex">
   {#if !noContent && data.page && data.format === null && data.service === null}

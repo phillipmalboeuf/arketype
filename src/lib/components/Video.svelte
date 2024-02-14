@@ -7,7 +7,7 @@
   export let half = false
   export let background = false
 
-  export let player: Player
+  export let player: Player = undefined
 	let paused = true
 	let muted = true
 	let ready = false

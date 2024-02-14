@@ -44,6 +44,7 @@
     padding: $base;
 
     figure {
+      isolation: isolate;
     }
 
     aside {
