@@ -42,7 +42,7 @@
 <style lang="scss">
   footer {
     position: relative;
-    z-index: 300;
+    z-index: 87;
     background-color: var(--back-color);
     transition: background-color 333ms;
 
