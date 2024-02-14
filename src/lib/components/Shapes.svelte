@@ -48,6 +48,7 @@
 
 <style lang="scss">
   figure {
+    pointer-events: none;
     position: fixed;
     z-index: 200;
     top: 0;
