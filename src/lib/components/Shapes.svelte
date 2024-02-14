@@ -77,9 +77,14 @@
 			mix-blend-mode: exclusion;
 		}
 
-    :global(svg) {
+    svg {
       width: 100%;
       height: auto;
+
+      > path,
+      > g {
+        opacity: 0;
+      }
     }
   }
 </style>
