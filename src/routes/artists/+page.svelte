@@ -58,7 +58,7 @@
 
     padding: $base;
     display: flex;
-    gap: $base;
+    gap: $base * 2;
     border-top: 1px solid;
     margin: 6vw 0;
 
@@ -89,7 +89,7 @@
         
         > a:first-child,
         > strong:first-child {
-          width: 12.5%;
+          width: 11.25%;
         }
       }
     }
