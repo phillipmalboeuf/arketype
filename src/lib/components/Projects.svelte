@@ -52,6 +52,15 @@
       flex-wrap: wrap;
       justify-content: space-between;
       margin: $base 0;
+
+      > h5,
+      > h2 {
+        width: 50%;
+      }
+      
+      > ul {
+        width: 30%;
+      }
     }
 
     a {

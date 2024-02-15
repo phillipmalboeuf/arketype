@@ -31,7 +31,7 @@
   </header>
 
   <div class="description">
-    <h3>{data.artist.fields.service.fields.artist || data.artist.fields.service.fields.title} <small>Artist</small></h3>
+    <h3>{data.artist.fields.service.fields.artist || data.artist.fields.service.fields.title}</h3>
     
     <aside>
       <Document body={data.artist.fields.description} />

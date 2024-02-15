@@ -35,7 +35,8 @@ export const load = (async ({ locals, url, params }) => {
   return {
     service: filter && services[filter],
     artists,
-    services: Object.values(services).sort((a, b) => b.count - a.count),
+    // services: Object.values(services).sort((a, b) => b.count - a.count),
+    services: Object.values(services).sort((a, b) => b.titre < a.titre ? 1 : -1),
     page: pages.items[0]
   }
 })

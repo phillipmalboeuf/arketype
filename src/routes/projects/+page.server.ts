@@ -39,7 +39,8 @@ export const load = (async ({ locals, url, params }) => {
     service: filter && services[filter],
     format,
     projects,
-    services: Object.values(services).sort((a, b) => b.count - a.count),
+    // services: Object.values(services).sort((a, b) => b.count - a.count),
+    services: Object.values(services).sort((a, b) => b.titre < a.titre ? 1 : -1),
     page: pages.items[0]
   }
 })
