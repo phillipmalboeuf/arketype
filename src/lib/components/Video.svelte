@@ -4,6 +4,7 @@
 	// import Vimeo from 'vimeo__player'
   import { onMount } from 'svelte'
 	
+	export let link: string
   export let half = false
   export let background = false
 
@@ -36,7 +37,7 @@
 
 <figure class:half class:ready>
   {#if browser}
-  <iframe title="Video" src="https://player.vimeo.com/video/858724565?h=0b37ea3820&loop=1&background=1{background ? '&portrait=0&muted=1&playsinline=1&autoplay=1' : '&muted=0'}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen id="video"></iframe>
+  <iframe title="Video" src="{link.replace('https://vimeo.com/arketype/review', 'https://player.vimeo.com/video').split('/').filter((s, i) => i < 5).join('/')}?loop=1&background=1{background ? '&portrait=0&muted=1&playsinline=1&autoplay=1' : '&muted=0'}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen id="video"></iframe>
   {/if}
 
 	{#if !background && player}
@@ -80,10 +81,12 @@
 		}
 
     &.half {
+			// height: 56.25vw;
 			height: 66vh;
 
 			iframe {
-      	height: 66vh;
+      	// height: 56.25vw;
+				height: 66vh;
 			}
     }
 	}

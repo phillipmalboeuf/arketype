@@ -24,7 +24,9 @@
 
 <header>
   <figure>
-    <Video half />
+    {#if data.project.fields.vimeo}
+    <Video half link={data.project.fields.vimeo} />
+    {/if}
   </figure>
   <h1 class="h1--huge">{#each data.project.fields.title.split(' ') as t}<span>{t}</span>{/each}</h1>
 </header>

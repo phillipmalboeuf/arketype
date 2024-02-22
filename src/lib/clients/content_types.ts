@@ -90,6 +90,7 @@ export interface TypeProjectFields {
     date?: EntryFieldTypes.Date;
     thumbnail?: EntryFieldTypes.AssetLink;
     media?: EntryFieldTypes.Array<EntryFieldTypes.AssetLink>;
+    vimeo?: EntryFieldTypes.Symbol;
     artists?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeArtistSkeleton>>;
     services?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeServiceSkeleton>>;
     client?: EntryFieldTypes.Symbol;
