@@ -127,6 +127,7 @@
           h2 {
             text-transform: uppercase;
             font-size: 7vw;
+            font-weight: normal;
           }
 
           figure {

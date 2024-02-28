@@ -45,7 +45,7 @@
 		muted = !muted
 		player.setMuted(muted)
 	}}>Sound {#if muted}On{:else}Off{/if}</button> -->
-	<button class:hover on:pointerenter={() => hover = true} on:pointerleave={() => hover = false} on:pointermove={e => {
+	<button id="video" class:hover on:pointerenter={() => hover = true} on:pointerleave={() => hover = false} on:pointermove={e => {
 		top = e.offsetY
 		left = e.offsetX
 	}} on:click|stopPropagation={() => {
@@ -101,7 +101,7 @@
 	}
 
 	button {
-		cursor: none;
+		// cursor: none;
 		position: absolute;
 		top: 0;
 		left: 0;

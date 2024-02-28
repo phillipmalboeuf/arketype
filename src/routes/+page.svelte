@@ -88,7 +88,7 @@
 
 <style lang="scss">
 	header {
-		cursor: pointer;
+		// cursor: pointer;
 		position: relative;
 		z-index: 99;
 		// margin-top: $base * -4;

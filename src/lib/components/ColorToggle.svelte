@@ -90,7 +90,7 @@
       transition: opacity 333ms;
 
       width: $base * 5;
-      cursor: col-resize;
+      // cursor: col-resize;
       vertical-align: text-bottom;
       -webkit-appearance: none;
       -moz-appearance: none;

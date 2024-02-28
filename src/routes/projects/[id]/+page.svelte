@@ -32,20 +32,21 @@
 </header>
 
 <main class="flex flex--gapped">
-  <div class="col col--6of12">
+  <div class="col col--6of12 flex flex--gapped">
+    <div class="col col--3of12">Credits</div>
     {#if data.project.fields.client}
-    <h3>Client {data.project.fields.client}</h3>
+    <h3 class="col col--9of12">{data.project.fields.client}</h3>
     {/if}
   </div>
   <div class="col col--6of12 artists">
     {#each data.project.fields.artists as artist}
-    <a class="h3" href="/artists/{artist.fields.id}">{artist.fields.service.fields.artist || artist.fields.service.fields.title} {artist.fields.name}</a>
+    <a class="h3" href="/artists/{artist.fields.id}">{artist.fields.name} <small>{artist.fields.service.fields.artist || artist.fields.service.fields.title}</small></a>
     {/each}
   </div>
 
-  <div class="col col--6of12 description">
-    {year(data.project.fields.date)}
-    <Document body={data.project.fields.description} />
+  <div class="col col--6of12 flex flex--gapped description">
+    <div class="col col--3of12">{year(data.project.fields.date)}</div>
+    <div class="col col--9of12"><Document body={data.project.fields.description} /></div>
   </div>
 
   {#if data.project.fields.media}
@@ -101,12 +102,15 @@
 
   main {
 
-    div {
+    > div {
       border-top: 1px solid;
       padding: ($base * 0.5) 0 ($base * 4);
 
-      display: flex;
-      flex-direction: column;
+      &:not(.flex) {
+        display: flex;
+        flex-direction: column;
+      }
+      
 
       &.artists {
         a {
@@ -124,6 +128,11 @@
           &:has(~ a:hover),
           &:has(~ a:focus) {
             opacity: 0.333;
+          }
+
+          small {
+            font-size: $base;
+            vertical-align: top;
           }
         }
       }

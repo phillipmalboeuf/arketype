@@ -4,6 +4,7 @@
 	import { dark, color } from '$lib/stores'
 	import Header from '$lib/components/Header.svelte'
 	import Footer from '$lib/components/Footer.svelte'
+	import Cursor from '$lib/components/Cursor.svelte'
 
 	import { page } from '$app/stores'
 
@@ -27,6 +28,8 @@
 
 	<Footer footer={data.footer} social={data.social} contact={data.contact} />
 </div>
+
+<Cursor />
 
 <style lang="scss">
 	div {

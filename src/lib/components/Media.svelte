@@ -25,7 +25,7 @@
 
   video {
     // background-color: var(--background-inverse);
-    cursor: pointer;
+    // cursor: pointer;
   }
  
   audio::-webkit-media-controls-enclosure {
