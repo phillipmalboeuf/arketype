@@ -66,6 +66,10 @@
       position: static;
     }
 
+    strong {
+      opacity: 0.3;
+    }
+
     a {
       &:not(:first-child):before {
         content: "● ";

@@ -67,7 +67,17 @@
       }
 
       @media (max-width: $mobile) {
+        align-items: flex-start;
+        margin-top: $base * 0.25;
+
+        > h5,
+        > h2 {
+          font-size: $base;
+          line-height: $scale;
+        }
+
         > ul {
+          font-size: $base;
           width: 50%;
         }
       }
@@ -94,9 +104,9 @@
         }
       }
 
-      h2 {
-        line-height: 1;
-      }
+      // h2 {
+      //   line-height: 1;
+      // }
     }
 
     li {
