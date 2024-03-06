@@ -130,10 +130,15 @@
             font-weight: normal;
           }
 
+          aside {
+            margin: $base ($base * 0.5) auto;
+          }
+
           figure {
             width: 0vw;
             transition: width 333ms;
             will-change: width;
+            margin-top: $base;
 
             :global(img),
             :global(video) {
@@ -147,7 +152,7 @@
             gap: $base * 0.5;
 
             figure {
-              width: 9vw;
+              width: 8vw;
             }
           }
         }

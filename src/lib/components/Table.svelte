@@ -8,31 +8,31 @@
 </script>
 
 <table>
-  <tr>
+  <!-- <tr>
     <th>Project</th>
     <th>Services</th>
     <th>Client</th>
     <th>Year</th>
-  </tr>
+  </tr> -->
   {#each projects.items as project}
   <a href="/projects/{project.fields.id}" style={project.fields.color && `--hover: ${project.fields.color}`}>
     <td>
-        <h2>{project.fields.title}</h2>
+      <h2>{project.fields.title}</h2>
     </td>
 
-    <td>
+    <td class="artists">
       {#each project.fields.artists as artist}
-      {artist.fields.service.fields.title} {artist.fields.name}<br>
+      <div><span>{artist.fields.service.fields.title}</span> <span>{artist.fields.name}</span></div>
       {/each}
     </td>
 
-    <td>
+    <td class="client">
       {project.fields.client}
     </td>
     
-    <td>
+    <!-- <td>
       {year(project.fields.date)}
-    </td>
+    </td> -->
 
     <td>
       {#if project.fields.thumbnail}
@@ -86,6 +86,36 @@
       &:has(~ a:hover),
       &:has(~ a:focus) {
         opacity: 0.5;
+      }
+
+      @media (min-width: $mobile) {
+        h2 {
+          margin-top: $base * -0.5;
+        }
+        
+        &:first-child {
+          td {
+            border-top: 1px solid;
+          }
+        }
+
+        .artists {
+          width: 20%;
+
+          > div {
+            display: flex;
+
+            span {
+              &:first-child {
+                width: 25%;
+              }
+            }
+          }
+        }
+
+        .client {
+          width: 20%;
+        }
       }
 
       @media (max-width: $mobile) {

@@ -31,7 +31,7 @@
   </header>
 
   <div class="description">
-    <h3>{data.artist.fields.service.fields.artist || data.artist.fields.service.fields.title}</h3>
+    <h2>{data.artist.fields.service.fields.artist || data.artist.fields.service.fields.title}</h2>
     
     <aside>
       <Document body={data.artist.fields.description} />
@@ -51,7 +51,7 @@
 
   <div>
     <nav>
-      <h3>Works</h3>
+      <h2 style="opacity: 0.3;">Works</h2>
       <!-- <a href="/projects">See more works</a> -->
     </nav>
 
@@ -80,6 +80,7 @@
     h1 {
       text-transform: uppercase;
       display: flex;
+      align-items: flex-end;
       flex-wrap: wrap;
       gap: $base * 0.5;
 
@@ -93,7 +94,7 @@
 
       figure {
         order: -1;
-        height: 12vw;
+        height: 9vw;
 
         :global(img),
         :global(video) {
@@ -112,7 +113,7 @@
         display: flex;
         gap: $base;
 
-        h3,
+        h2,
         aside,
         figure,
         nav {
@@ -141,14 +142,14 @@
           margin-top: 50vw;
           gap: $mobile_base * 2;
 
-          h3,
+          h2,
           aside,
           figure,
           nav {
             flex: none;
           }
 
-          h3 {
+          h2 {
             order: -2;
           }
 

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { page } from '$app/stores'
   let hovering = false
   let hidden = false
 
@@ -7,6 +8,7 @@
 </script>
 
 <svelte:document on:mousemove={(e) => {
+  if ($page.data.device !== 'desktop') return
 
   // @ts-ignore
   if (!hovering && ['BUTTON', 'A', 'VIDEO'].includes(e.target.nodeName)) {
@@ -46,12 +48,12 @@
 
     @supports (mix-blend-mode: exclusion) {
       background-color: white;
-      mix-blend-mode: exclusion;
+      mix-blend-mode: difference;
     }
 
     &.hovering {
       transform: translate(-50%, -50%) scale(0.88);
-      border-radius: 25%;
+      // border-radius: 25%;
     }
 
     &.hidden {

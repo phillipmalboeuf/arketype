@@ -31,7 +31,7 @@
           {/each}
         </ul>
 
-        <date>{year(project.fields.date)}</date>
+        <!-- <date>{year(project.fields.date)}</date> -->
       </aside>
     </a>
   </li>
@@ -42,6 +42,10 @@
   ol {
     list-style: none;
     padding: $base;
+
+    @media (min-width: $mobile) {
+      row-gap: $base * $scale * 7;
+    }
 
     figure {
       isolation: isolate;
@@ -60,6 +64,12 @@
       
       > ul {
         width: 30%;
+      }
+
+      @media (max-width: $mobile) {
+        > ul {
+          width: 50%;
+        }
       }
     }
 

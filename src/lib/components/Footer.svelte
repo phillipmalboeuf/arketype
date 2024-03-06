@@ -69,6 +69,9 @@
     }
 
     a {
+      // @media (min-width: $mobile) {
+      //   font-size: $base * $scale;
+      // }
       transition: opacity 333ms;
       
       &:hover,

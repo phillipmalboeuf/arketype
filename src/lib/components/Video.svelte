@@ -117,7 +117,7 @@
 		
 		@supports (mix-blend-mode: exclusion) {
 			color: white;
-			mix-blend-mode: exclusion;
+			mix-blend-mode: difference;
 		}
 
 		span {
