@@ -73,6 +73,10 @@
       padding: $mobile_base;
     }
 
+    :global(ol) {
+      padding: $base 0 !important;
+    }
+
     header {
       margin-top: 8vw;
     }

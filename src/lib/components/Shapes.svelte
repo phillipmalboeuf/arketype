@@ -58,18 +58,34 @@
     padding: ($base * 1);
     pointer-events: none;
 
+    @media (max-width: $mobile) {
+      display: none;
+    }
+
     &.work {
       width: 80%;
+      @media (max-width: $mobile) {
+        width: auto;
+        height: 100vh;
+      }
     }
 
     &.page {
       width: 90%;
+      @media (max-width: $mobile) {
+        width: auto;
+        height: 100vh;
+      }
     }
 
     &.artists {
-      width: 76%;
       top: 5%;
       right: 10%;
+      width: 76%;
+      @media (max-width: $mobile) {
+        width: auto;
+        height: 100vh;
+      }
     }
 
     @supports (mix-blend-mode: exclusion) {
@@ -80,6 +96,10 @@
     svg {
       width: 100%;
       height: auto;
+
+      @media (max-width: $mobile) {
+        height: 100%;
+      }
 
       > path,
       > g {

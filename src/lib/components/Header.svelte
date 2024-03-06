@@ -92,7 +92,7 @@
         :global(aside) {
           width: 100%;
           padding: $mobile_base * 0.5;
-          border-top: 1px solid;
+          border-top: 1px solid $grey;
           justify-content: flex-end;
         }
       }
@@ -103,7 +103,7 @@
           display: block;
           width: 100%;
           padding: $mobile_base * 0.5;
-          border-top: 1px solid;
+          border-top: 1px solid $grey;
 
           &:not(.active) {
             &:before {

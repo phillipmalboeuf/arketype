@@ -32,21 +32,21 @@
 </header>
 
 <main class="flex flex--gapped">
-  <div class="col col--6of12 flex flex--gapped">
+  <div class="col col--6of12 col--mobile--12of12 flex flex--gapped">
     <div class="col col--3of12">Credits</div>
     {#if data.project.fields.client}
     <h3 class="col col--9of12">{data.project.fields.client}</h3>
     {/if}
   </div>
-  <div class="col col--6of12 artists">
+  <div class="col col--6of12 col--mobile--12of12 artists">
     {#each data.project.fields.artists as artist}
     <a class="h3" href="/artists/{artist.fields.id}">{artist.fields.name} <small>{artist.fields.service.fields.artist || artist.fields.service.fields.title}</small></a>
     {/each}
   </div>
 
   <div class="col col--6of12 flex flex--gapped description">
-    <div class="col col--3of12">{year(data.project.fields.date)}</div>
-    <div class="col col--9of12"><Document body={data.project.fields.description} /></div>
+    <!-- <div class="col col--3of12">{year(data.project.fields.date)}</div> -->
+    <div class="col col--9of12 col--mobile--12of12"><Document body={data.project.fields.description} /></div>
   </div>
 
   {#if data.project.fields.media}
@@ -61,7 +61,7 @@
 {#if data.project.fields.related?.length}
 <footer>
   <nav>
-    <h4>Related Works</h4>
+    <h3>From the same artist</h3>
     <a href="/projects">See more works</a>
   </nav>
   <Projects tight projects={{ total: data.project.fields.related.length, items: data.project.fields.related, skip: 0, limit: data.project.fields.related.length }} />
@@ -166,6 +166,12 @@
 
       display: flex;
       justify-content: space-between;
+    }
+
+    @media (max-width: $mobile) {
+      :global(ol) {
+        padding: $base 0;
+      }
     }
   }
 </style>

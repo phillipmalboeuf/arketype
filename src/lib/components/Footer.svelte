@@ -96,6 +96,10 @@
       gap: $base * 0.25;
       margin-bottom: $base;
       width: 33.3%;
+
+      @media (max-width: $mobile) {
+        width: auto;
+      }
     }
 
     .contact {
@@ -109,6 +113,10 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
+
+      @media (max-width: $mobile) {
+        font-size: $mobile_base * $mobile_scale * 0.75;
+      }
     }
   }
 </style>
