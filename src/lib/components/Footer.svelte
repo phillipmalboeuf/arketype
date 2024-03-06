@@ -17,6 +17,7 @@
     <Logotype />
   </figure>
 
+  <a id="contact" />
   <nav class="contact">
   {#each contact.fields.links as link}
   <a href={link.fields.path} {...link.fields.external && { rel: "external", target: "_blank" }}

@@ -22,21 +22,25 @@
   </section>
   {/if}
 
-  <nav class="col col--9of12 col--mobile--12of12">
-    {#if data.service}
-    <a href="/projects{data.format ? `?format=${data.format}` : ''}">All Works</a>
-    {:else}
-    <strong>Filters</strong>
-    {/if}
-    {#each data.services as service}
-    <a href="/projects?service={service.id}{data.format ? `&format=${data.format}` : ''}" class:active={data.service && data.service.id === service.id}>{service.titre}</a>
-    {/each}
+  <nav class="col col--6of12 col--mobile--12of12">
+    <div class="flex">
+      {#if data.service}
+      <a class="col col--2of12 col--mobile--4of12" href="/projects{data.format ? `?format=${data.format}` : ''}">All Works</a>
+      {:else}
+      <strong class="col col--2of12 col--mobile--4of12">Filters</strong>
+      {/if}
+      {#each data.services as service}
+      <a class="col col--2of12 col--mobile--4of12" href="/projects?service={service.id}{data.format ? `&format=${data.format}` : ''}" class:active={data.service && data.service.id === service.id}>{service.titre}</a>
+      {/each}
+    </div>
   </nav>
 
-  <nav class="col col--3of12 col--mobile--12of12">
-    <span>Work</span>
-    <a href="/projects?format=images{data.service ? `&service=${data.service.id}` : ''}" class:active={data.format === null || data.format === 'images'}>Images</a>
-    <a href="/projects?format=list{data.service ? `&service=${data.service.id}` : ''}" class:active={data.format && data.format === 'list'}>List</a>
+  <nav class="col col--6of12 col--mobile--12of12">
+    <div class="flex">
+      <span class="col col--2of12 col--mobile--4of12"><strong>Work</strong></span>
+      <a class="col col--2of12 col--mobile--4of12" href="/projects?format=images{data.service ? `&service=${data.service.id}` : ''}" class:active={data.format === null || data.format === 'images'}>Images</a>
+      <a class="col col--2of12 col--mobile--4of12" href="/projects?format=list{data.service ? `&service=${data.service.id}` : ''}" class:active={data.format && data.format === 'list'}>List</a>
+    </div>
   </nav>
 
   <section class="projects col col--12of12">
@@ -55,12 +59,17 @@
     top: $base * 3.25;
     z-index: 2;
     background-color: var(--back-color);
-    transition: background-color 333ms;
+    transition: transform 333ms, background-color 333ms;
+
+    // transform: translateY(calc(-100% - ($base * 3.25)));
+    // will-change: transform;
+
+    // :global(.up) & {
+    //   transform: translateY(0%);
+    // }
 
     padding: $base;
-    display: flex;
-    flex-wrap: wrap;
-    gap: $base * 2;
+    // gap: $base * 2;
     border-top: 1px solid;
 
     margin: 6vw 0;
@@ -91,18 +100,14 @@
       }
     }
 
-    @media (min-width: $mobile) {
-      &:first-of-type {
-        
-        > a:first-child,
-        > strong:first-child {
-          width: 15%;
-        }
+    &:first-of-type {
+      @media (max-width: $mobile) {
+        > div { justify-content: flex-end; row-gap: $mobile_base * 0.5; }
       }
     }
 
     &:last-of-type {
-      justify-content: flex-end;
+      > div { justify-content: flex-end; }
 
       @media (min-width: $mobile) {
         span {

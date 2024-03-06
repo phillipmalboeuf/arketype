@@ -10,6 +10,10 @@
 
 	import type { LayoutData } from './$types'
 	export let data: LayoutData
+
+	let up = true
+	let currentScroll = 0
+	let scrollY = 0
 </script>
 
 <svelte:head>
@@ -19,7 +23,17 @@
 	{/if}
 </svelte:head>
 
-<div style={!!$color && `--color: ${$color}`} class:dark={$dark} class:light={$dark !== undefined && !$dark}>
+<svelte:window bind:scrollY on:scroll={e => {
+  if (up && scrollY > 0 && currentScroll < scrollY) {
+		up = false
+	} else if (!up && currentScroll > scrollY) {
+		up = true
+	}
+	
+	currentScroll = scrollY
+}} />
+
+<div class:up style={!!$color && `--color: ${$color}`} class:dark={$dark} class:light={$dark !== undefined && !$dark}>
 	{#if !$page.data.page || $page.data.page?.fields.id !== 'home'}<Header header={data.header} />{/if}
 
 	<main>

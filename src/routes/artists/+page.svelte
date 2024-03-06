@@ -16,16 +16,21 @@
   </section>
   {/if}
 
-  <nav>
-    {#if data.service}
-    <a href="/artists">Tous</a>
-    {:else}
-    <strong>Filters</strong>
-    {/if}
-    {#each data.services as service}
-    <a href="/artists?service={service.id}" class:active={data.service && data.service.id === service.id}>{service.titre}</a>
-    {/each}
+  <nav class="flex">
+    <div class="col col--6of12 col--mobile--12of12">
+      <div class="flex">
+      {#if data.service}
+      <a class="col col--2of12 col--mobile--4of12" href="/artists">Tous</a>
+      {:else}
+      <strong class="col col--2of12 col--mobile--4of12">Filters</strong>
+      {/if}
+      {#each data.services as service}
+      <a class="col col--2of12 col--mobile--4of12" href="/artists?service={service.id}" class:active={data.service && data.service.id === service.id}>{service.titre}</a>
+      {/each}
+      </div>
+    </div>
   </nav>
+
   <ol>
     {#each data.artists.items as artist}
     <li>
@@ -54,16 +59,29 @@
     top: $base * 3.25;
     z-index: 2;
     background-color: var(--back-color);
-    transition: background-color 333ms;
+    transition: transform 333ms, background-color 333ms;
 
-    padding: $base;
-    display: flex;
-    gap: $base * 2;
+    // transform: translateY(-100%);
+    // will-change: transform;
+
+    // :global(.up) & {
+    //   transform: translateY(0%);
+    // }
+
+    // padding: $base;
+    // gap: $base * 2;
     border-top: 1px solid;
     margin: 6vw 0;
 
     @media (max-width: $mobile) {
       position: static;
+    }
+
+    .flex {
+      padding: $base;
+      @media (max-width: $mobile) {
+        justify-content: flex-end; row-gap: $mobile_base * 0.5;
+      }
     }
 
     strong {
@@ -87,16 +105,6 @@
         }
       }
     }
-
-    @media (min-width: $mobile) {
-      &:first-of-type {
-        
-        > a:first-child,
-        > strong:first-child {
-          width: 11.25%;
-        }
-      }
-    }
   }
 
   .content {
@@ -112,8 +120,11 @@
     list-style: none;
     display: flex;
     flex-direction: column;
+    padding: 0 $base;
     // flex-wrap: wrap;
     // gap: $base;
+
+    @media (max-width: $mobile) { padding: 0 $mobile_base; }
 
     li {
       a {
@@ -125,6 +136,18 @@
         &:hover,
         &:focus {
           text-decoration: none;
+        }
+
+        @media (max-width: $mobile) {
+          position: relative;
+
+          &:after {
+            content: "+";
+            position: absolute;
+            bottom: $mobile_base * 0.5;
+            right: 0;
+            font-size: $mobile_base * $mobile_scale;
+          }
         }
 
         @media (min-width: $mobile) {

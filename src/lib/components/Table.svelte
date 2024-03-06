@@ -121,13 +121,27 @@
       @media (max-width: $mobile) {
         display: flex;
         flex-wrap: wrap;
-        padding-bottom: $mobile_base * 0.5;
+        padding: 0 ($mobile_base * 0.5) ($mobile_base * 0.5);
+
+        position: relative;
+
+        &:after {
+          content: "+";
+          position: absolute;
+          bottom: $mobile_base;
+          right: $mobile_base * 0.5;
+          font-size: $mobile_base * $mobile_scale;
+        }
+
+        color: var(--hover);
 
         td {
 
           &:first-child {
             width: 100%;
+            height: 15vh;
             order: -2;
+            border-bottom: none;
           }
 
           &:not(:first-child) {

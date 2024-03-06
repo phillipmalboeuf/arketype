@@ -106,6 +106,28 @@
           width: auto;
         }
       }
+
+      @media (max-width: $mobile) {
+        display: block;
+        font-size: $mobile_base * $mobile_scale * 4;
+
+        figure {
+          display: block;
+          width: 100%;
+          height: auto;
+          margin: $mobile_base 0;
+
+          :global(img),
+          :global(video) {
+            width: 100%;
+            height: auto;
+          }
+
+          &:last-child {
+            margin-bottom: $mobile_base * -4;
+          }
+        }
+      }
     }
 
     div {

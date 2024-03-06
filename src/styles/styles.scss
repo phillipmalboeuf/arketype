@@ -12,6 +12,10 @@
 	cursor: none;
 }
 
+html {
+	scroll-behavior: smooth;
+}
+
 body {
 	min-height: 100vh;
 
@@ -213,6 +217,10 @@ table {
   flex-wrap: wrap;
   --gap: 0px;
   gap: var(--gap);
+
+	&.flex--end {
+		justify-content: flex-end;
+	}
 
   &.flex--gapped {
     --gap: #{$base};

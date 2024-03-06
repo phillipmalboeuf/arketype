@@ -11,29 +11,41 @@
   let visible = false
 </script>
 
-<header class:visible>
-  <a href="/">Arketype</a>
+<header class="mobile">
+  <a class="logo" href="/">Arketype</a>
   <button on:click={() => visible = !visible}>{#if visible}Close{:else}Menu{/if}</button>
+</header>
 
-  <nav>
+<header class:visible class="flex">
+  <div class="col col--6of12 col--mobile--12of12">
+    <nav class="flex main">
+      <a class="col col--2of12 logo" href="/">Arketype</a>
 
-    {#each header.fields.links as link}
-    <a href={link.fields.path} {...link.fields.external && { rel: "external", target: "_blank" }}
-      on:click={() => visible = false}
-      class:active={$page.url.pathname !== '/' && $page.url.pathname.startsWith(link.fields.path)}>{link.fields.label}</a>
-    {/each}
+      {#each header.fields.links as link}
+      <a href={link.fields.path} {...link.fields.external && { rel: "external", target: "_blank" }}
+        on:click={() => visible = false}
+        class="col col--2of12"
+        class:active={$page.url.pathname !== '/' && $page.url.pathname.startsWith(link.fields.path)}>{link.fields.label}</a>
+      {/each}
+    </nav>
+  </div>
 
-    <a href="/fr" class="locale">FR</a>
+  <div class="col col--6of12 col--mobile--12of12">
+    <nav class="flex flex--end secondary">
+      <a class="col col--2of12 col--mobile--6of12 locale" href="/fr">FR</a>
 
-    <ColorToggle />
-  </nav>
+      <div class="col col--2of12 col--mobile--6of12">
+        <ColorToggle />
+      </div>
+    </nav>
+  </div>
 </header>
 
 <style lang="scss">
   header {
     position: sticky;
     top: 0;
-    padding: $base;
+    // padding: $base;
     z-index: 88;
 
     @media (max-width: $mobile) {
@@ -41,22 +53,14 @@
     }
 
     background-color: var(--back-color);
-    transition: background-color 333ms;
+    transition: transform 333ms, background-color 333ms;
 
-    display: flex;
-    align-items: center;
-    gap: $base;
+    // transform: translateY(-100%);
+    // will-change: transform;
 
-    > a,
-    > button {
-      flex: 1;
-      text-transform: uppercase;
-
-      &:hover,
-      &:focus {
-        text-decoration: none;
-      }
-    }
+    // :global(.up) & {
+    //   transform: translateY(0%);
+    // }
 
     > button {
       justify-content: flex-end;
@@ -66,57 +70,19 @@
       }
     }
 
-    nav {
-      flex: 7;
-      display: flex;
+    .flex {
       align-items: center;
-      gap: $base * 2;
+    }
 
-      @media (max-width: $mobile) {
-        position: absolute;
-        z-index: -1;
-        top: 0;
-        left: 0;
-        width: 100%;
-        min-height: 50vh;
-        background-color: var(--back-color);
-        transition: background-color 333ms;
+    > div {
+      padding: $base;
+    }
 
-        flex-direction: column;
-        gap: $mobile_base * 2;
-        padding-top: $mobile_base * 6;
-
-        transform: translateY(-100%);
-        transition: transform 666ms;
-
-        :global(aside) {
-          width: 100%;
-          padding: $mobile_base * 0.5;
-          border-top: 1px solid $grey;
-          justify-content: flex-end;
-        }
-      }
+    nav {
 
       a {
 
-        @media (max-width: $mobile) {
-          display: block;
-          width: 100%;
-          padding: $mobile_base * 0.5;
-          border-top: 1px solid $grey;
-
-          &:not(.active) {
-            &:before {
-              display: none;
-            }
-          }
-        }
-      
-        &.locale {
-          margin-left: auto;
-        }
-
-        &:not(.locale) {
+        &:not(.logo) {
           &:before {
             content: "● ";
             opacity: 0;
@@ -132,12 +98,75 @@
             opacity: 1 !important;
           }
         }
-      }
+      }      
+    }
+  }
+
+  header.mobile {
+    display: flex;
+    justify-content: space-between;
+    padding: $mobile_base;
+
+    .logo {
+      text-transform: uppercase;
+    }
+
+    @media (min-width: $mobile) {
+      display: none;
     }
 
     @media (max-width: $mobile) {
-      &.visible {
-        nav {
+      + header {
+        position: fixed;
+        z-index: 86;
+        top: 0;
+        left: 0;
+        width: 100%;
+        min-height: 50vh;
+        background-color: var(--back-color);
+        transition: background-color 333ms;
+
+        padding: ($mobile_base * 6) 0 ($mobile_base * 0.5);
+
+        transform: translateY(-100%);
+        transition: transform 666ms;
+
+        > div {
+          padding: 0;
+        }
+
+        .main {
+          flex-direction: column;
+          gap: $mobile_base * 2;
+
+          a {
+            display: block;
+            width: 100%;
+            padding: $mobile_base;
+            border-top: 1px solid $grey;
+
+            &:not(.active) {
+              &:before {
+                display: none;
+              }
+            }
+          }
+        }
+
+        .secondary {
+          margin-top: $mobile_base * 6;
+          padding: ($mobile_base * 0.5);
+          border-top: 1px solid $grey;
+        }
+
+        // :global(aside) {
+        //   width: 100%;
+        //   padding: $mobile_base * 0.5;
+        //   border-top: 1px solid $grey;
+        //   justify-content: flex-end;
+        // }
+
+        &.visible {
           transform: translateY(0);
         }
       }
