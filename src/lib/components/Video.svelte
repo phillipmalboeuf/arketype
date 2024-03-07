@@ -33,11 +33,16 @@
 			player.on("loaded", loaded)
 		}
 	})
+
+	function format(url: string) {
+		const split = url.replace('https://vimeo.com/arketype/review', 'https://player.vimeo.com/video').replace('https://vimeo.com', 'https://player.vimeo.com/video').split('/')
+		return split.filter((s, i) => i < 5).join('/') + `?h=${split[5]}`
+	}
 </script>
 
 <figure class:half class:ready>
   {#if browser}
-  <iframe title="Video" src="{link.replace('https://vimeo.com/arketype/review', 'https://player.vimeo.com/video').split('/').filter((s, i) => i < 5).join('/')}?loop=1&background=1{background ? '&portrait=0&muted=1&playsinline=1&autoplay=1' : '&muted=0'}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen id="video"></iframe>
+  <iframe title="Video" src="{format(link)}&loop=1&background=1{background ? '&portrait=0&muted=1&playsinline=1&autoplay=1' : '&muted=0'}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen id="video"></iframe>
   {/if}
 
 	{#if !background && player}

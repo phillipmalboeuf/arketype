@@ -31,7 +31,7 @@ export const load = (async ({ locals, url, params }) => {
   })
 
   const [projects, pages] = await Promise.all([
-    content.getEntries<TypeProjectSkeleton>({ content_type: "project", include: 2, order: ["-fields.date"],  limit: 12, ...filter ? { links_to_entry: services[filter].sys } : {} }),
+    content.getEntries<TypeProjectSkeleton>({ content_type: "project", include: 2, order: ["-fields.date"],  limit: 20, ...filter ? { links_to_entry: services[filter].sys } : {} }),
     content.getEntries<TypePageSkeleton>({ content_type: "page", include: 2, "fields.id": "projects" }),
   ])
 
