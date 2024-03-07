@@ -25,9 +25,9 @@
   <nav class="col col--6of12 col--mobile--12of12">
     <div class="flex">
       {#if data.service}
-      <a class="col col--2of12 col--mobile--4of12" href="/projects{data.format ? `?format=${data.format}` : ''}">All Works</a>
+      <a class="col col--3of12 col--mobile--4of12" href="/projects{data.format ? `?format=${data.format}` : ''}">All Works</a>
       {:else}
-      <strong class="col col--2of12 col--mobile--4of12">Filters</strong>
+      <strong class="col col--3of12 col--mobile--4of12">Filters</strong>
       {/if}
       {#each data.services as service}
       <a class="col col--2of12 col--mobile--4of12" href="/projects?service={service.id}{data.format ? `&format=${data.format}` : ''}" class:active={data.service && data.service.id === service.id}>{service.titre}</a>

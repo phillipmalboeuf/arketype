@@ -56,9 +56,9 @@
 
 {#if !hidden}
 <header>
-	<nav>
-		<a href="/">Arketype</a>
-		<button on:click={() => {
+	<nav class="flex">
+		<a class="col col--3of12 col--mobile--4of12" href="/">Arketype</a>
+		<button class="col col--4of12 col--mobile--6of12" on:click={() => {
 			muted = !muted
 			player.setMuted(muted)
 		}}>Sound {#if muted}On{:else}Off{/if}</button>
@@ -107,12 +107,16 @@
 			left: 0;
 			z-index: 40;
 			
-			display: flex;
+			// display: flex;
 			align-items: center;
-			gap: $base;
+			// gap: $base;
 			padding: $base;
-			width: 100%;
+			width: 50%;
 			color: $back-color;
+
+			@media (max-width: $mobile) {
+				width: 100%;
+			}
 
 			> :global(figure) {
 				background-color: $front-color;
@@ -120,13 +124,13 @@
 
 			> a {
 				text-transform: uppercase;
-				flex: 1;
+				// flex: 1;
 			}
 
 			> button {
 				display: inline;
 				text-align: left;
-				flex: 7;
+				// flex: 7;
 				
 				&:before {
 					content: "● ";

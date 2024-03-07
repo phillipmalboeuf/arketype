@@ -20,9 +20,9 @@
     <div class="col col--6of12 col--mobile--12of12">
       <div class="flex">
       {#if data.service}
-      <a class="col col--2of12 col--mobile--4of12" href="/artists">Tous</a>
+      <a class="col col--3of12 col--mobile--4of12" href="/artists">Tous</a>
       {:else}
-      <strong class="col col--2of12 col--mobile--4of12">Filters</strong>
+      <strong class="col col--3of12 col--mobile--4of12">Filters</strong>
       {/if}
       {#each data.services as service}
       <a class="col col--2of12 col--mobile--4of12" href="/artists?service={service.id}" class:active={data.service && data.service.id === service.id}>{service.titre}</a>

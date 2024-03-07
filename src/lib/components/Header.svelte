@@ -19,7 +19,7 @@
 <header class:visible class="flex">
   <div class="col col--6of12 col--mobile--12of12">
     <nav class="flex main">
-      <a class="col col--2of12 logo" href="/">Arketype</a>
+      <a class="col col--3of12 logo" href="/">Arketype</a>
 
       {#each header.fields.links as link}
       <a href={link.fields.path} {...link.fields.external && { rel: "external", target: "_blank" }}
