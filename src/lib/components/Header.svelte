@@ -70,6 +70,10 @@
       }
     }
 
+    .logo {
+      text-transform: uppercase;
+    }
+
     .flex {
       align-items: center;
     }
@@ -106,10 +110,6 @@
     display: flex;
     justify-content: space-between;
     padding: $mobile_base;
-
-    .logo {
-      text-transform: uppercase;
-    }
 
     @media (min-width: $mobile) {
       display: none;
