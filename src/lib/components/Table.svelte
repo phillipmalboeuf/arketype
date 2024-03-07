@@ -37,7 +37,7 @@
     <td>
       {#if project.fields.thumbnail}
       <figure>
-        <Media media={project.fields.thumbnail} small />
+        <Media media={project.fields.thumbnail} small ar={10/16} />
       </figure>
       {/if}
     </td>
