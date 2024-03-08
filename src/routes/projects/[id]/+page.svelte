@@ -40,7 +40,7 @@
   </div>
   <div class="col col--6of12 col--mobile--12of12 artists">
     {#each data.project.fields.artists as artist}
-    <a class="h3" href="/artists/{artist.fields.id}">{artist.fields.name} <small>{artist.fields.service.fields.artist || artist.fields.service.fields.title}</small></a>
+    <h3>{artist.fields.name} <small>{artist.fields.service.fields.artist || artist.fields.service.fields.title}</small></h3>
     {/each}
   </div>
 
@@ -129,11 +129,13 @@
           &:has(~ a:focus) {
             opacity: 0.333;
           }
+        }
 
-          small {
-            font-size: $base;
-            vertical-align: top;
-          }
+        small {
+          font-size: $base;
+          display: inline-block;
+          margin-top: $base * 0.5;
+          vertical-align: top;
         }
       }
 
