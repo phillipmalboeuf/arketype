@@ -20,6 +20,11 @@
   })
 </script>
 
+<svelte:head>
+	<title>{data.project.fields.title} – Arketype</title>
+	<meta name="description" content="Arketype pour {data.project.fields.client}" />
+</svelte:head>
+
 <Shapes type="work" />
 
 <header>
