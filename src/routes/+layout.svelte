@@ -61,6 +61,9 @@
 			}
 		}
 
+		--front-color: #{$front-color};
+		--back-color: var(--color, #{$back-color});
+
 		&.dark {
 			--front-color: var(--color, #{$back-color});
 			--back-color: #{$front-color};
