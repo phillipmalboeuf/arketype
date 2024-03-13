@@ -51,7 +51,9 @@
 
   <div class="col col--6of12 flex flex--gapped description">
     <!-- <div class="col col--3of12">{year(data.project.fields.date)}</div> -->
+    {#if data.project.fields.description?.content}
     <div class="col col--9of12 col--mobile--12of12"><Document body={data.project.fields.description} /></div>
+    {/if}
   </div>
 
   {#if data.project.fields.media}
