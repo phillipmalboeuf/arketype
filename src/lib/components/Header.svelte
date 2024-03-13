@@ -32,7 +32,7 @@
 
   <div class="col col--6of12 col--mobile--12of12">
     <nav class="flex flex--end secondary">
-      <a class="col col--2of12 col--mobile--6of12 locale" href="/fr">FR</a>
+      <!-- <a class="col col--2of12 col--mobile--6of12 locale" href="/fr">FR</a> -->
 
       <div class="col col--2of12 col--mobile--6of12">
         <ColorToggle />
