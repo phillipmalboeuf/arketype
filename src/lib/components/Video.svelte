@@ -35,6 +35,7 @@
 	})
 
 	function format(url: string) {
+		if (url.includes('player.vimeo.com')) return url;
 		const split = url.replace('?share=copy', '').replace('https://vimeo.com/arketype/review', 'https://player.vimeo.com/video').replace('https://vimeo.com', 'https://player.vimeo.com/video').split('/')
 		return split.filter((s, i) => i < 5).join('/') + `?h=${split[5]}`
 	}
