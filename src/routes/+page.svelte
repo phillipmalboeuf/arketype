@@ -71,8 +71,7 @@
 	}}>
 		<!-- <Logotype /> -->
 	</button>
-
-	<Video background bind:player={player} link={"https://player.vimeo.com/video/858724565"} />
+	<Video background bind:player={player} link={"https://player.vimeo.com/video/858724565?h=0b37ea3820"} />
 </header>
 {/if}
 
