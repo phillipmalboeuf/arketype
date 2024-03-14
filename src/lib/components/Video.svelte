@@ -95,6 +95,20 @@
 				height: 66vh;
 			}
     }
+
+		@media (max-width: $mobile) {
+			margin-bottom: $gap;
+
+			&.half {
+			// height: 56.25vw;
+				height: 50vh;
+
+				iframe {
+					// height: 56.25vw;
+					height: 50vh;
+				}
+			}
+		}
 	}
 
 	iframe {
@@ -130,6 +144,26 @@
 			pointer-events: none;
 			position: absolute;
 			transform: translate(-50%, -50%);
+		}
+
+		@media (max-width: $mobile) {
+			// bottom: 0;
+			// right: 0;
+			// left: auto;
+			// top: auto;
+			// height: auto;
+			// width: auto;
+			opacity: 1;
+			display: flex;
+			align-items: flex-end;
+			justify-content: flex-end;
+
+			span {
+				pointer-events: auto;
+				position: static;
+				transform: none;
+				padding: $mobile_base;
+			}
 		}
 	}
 </style>
