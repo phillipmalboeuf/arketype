@@ -33,11 +33,6 @@
 	}
 </script>
 
-<svelte:head>
-	<title>Arketype</title>
-	<meta name="description" content="Arketype post-production" />
-</svelte:head>
-
 <svelte:window bind:innerHeight on:scroll={(e) => {
 	if (e.currentTarget.scrollY > 100) {
 		projects()

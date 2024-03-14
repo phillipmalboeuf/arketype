@@ -9,7 +9,9 @@ export const load = (async (r) => {
   const [page] = await Promise.all([
     {
       fields: {
-        id: 'home'
+        id: 'home',
+        title: 'Arketype',
+        description: 'Arketype is a post-production boutique that lives and breathes the craft of our artists. We fuse creativity and technique to amplify the extraordinary in your story.'
       }
     }
     // content.getEntry<TypePageSkeleton>('2AOPCu0AzgqwVGax55V4a4', { include: 2, locale: { 'en': 'en-US' }[params.locale] || 'fr-CA' }),
