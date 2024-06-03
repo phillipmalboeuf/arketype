@@ -27,9 +27,18 @@
     flex-direction: column;
     gap: $base;
 
-    :global(hr),
+    :global(hr:not(:has(+ table))),
     :global(hr + p) {
       opacity: 0.5;
+    }
+
+    :global(hr + table) {
+      margin-top: $base * -1;
+
+      :global(td),
+      :global(th) {
+        border-bottom: 1px solid $grey;
+      }
     }
 
     section {
