@@ -7,13 +7,22 @@
   export let item: Entry<TypeHeroSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">
 </script>
 
-<header id={item.fields.id} class={``} class:media={false}>
+<header id={item.fields.id} class:small={item.fields.title.length > 40} class:media={false}>
+  {#if !item.fields.media}
   <h1>{item.fields.title}</h1>
-  <!-- {#if item.fields.media}
+  {:else}
+  <h1 class="gallery">
+  {#each item.fields.title.split(" ") as t}
+  <span>{t}</span>
+  {/each}
+
+  {#each item.fields.media as media, i}
   <figure>
-    <Media media={item.fields.media} />
+    <Media {media} small />
   </figure>
-  {/if} -->
+  {/each}
+  </h1>
+  {/if}
 
   <!-- <footer>
     <a href="#introduction"><Icon /></a>
@@ -36,6 +45,47 @@
       line-height: 1;
       text-align: justify;
       text-align-last: center;
+
+      &.gallery {
+        display: flex;
+        align-items: flex-end;
+        flex-wrap: wrap;
+        gap: $base * 0.5;
+
+        font-size: 12vw;
+
+        span {
+          order: -2;
+          &:nth-child(n + 3) {
+            order: 1;
+          }
+        }
+
+        figure {
+          order: -1;
+          height: 9vw;
+
+          :global(img),
+          :global(video) {
+            height: 100%;
+            width: auto;
+          }
+        }
+      }
+    }
+
+    &.small {
+      h1 {
+        font-size: 8vw;
+
+        &.gallery {
+          figure {
+            height: 7vw;
+          }
+        }
+      }
+
+      
     }
 
     // &.media {

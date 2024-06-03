@@ -15,14 +15,12 @@
   import Shapes from '$lib/components/Shapes.svelte'
 
 	import type { PageData } from './$types'
+  import Vimeo from '$lib/components/Vimeo.svelte';
   export let data: PageData
 
 	let href: string
 	let hidden = false
 	let innerHeight: number
-
-	let muted = true
-	let player: Player
 
 	const projects = async () => {
 		if (href) return
@@ -49,25 +47,8 @@
 
 <Shapes type="work" />
 
-{#if !hidden}
-<header>
-	<nav class="flex">
-		<a class="col col--3of12 col--mobile--4of12" href="/">Arketype</a>
-		<button class="col col--4of12 col--mobile--6of12" on:click={() => {
-			muted = !muted
-			player.setMuted(muted)
-		}}>Sound {#if muted}On{:else}Off{/if}</button>
-
-		<!-- <ColorToggle /> -->
-	</nav>
-
-	<button class="scroll" on:click={() => {
-		window.scrollTo({ top: innerHeight, behavior: 'smooth' })
-	}}>
-		<!-- <Logotype /> -->
-	</button>
-	<Video background bind:player={player} link={"https://player.vimeo.com/video/858724565?h=0b37ea3820"} />
-</header>
+{#if !hidden && data.vimeo}
+<Vimeo item={data.vimeo} home />
 {/if}
 
 <Header header={$page.data.header} />
@@ -81,90 +62,5 @@
 
 
 <style lang="scss">
-	header {
-		// cursor: pointer;
-		position: relative;
-		z-index: 99;
-		// margin-top: $base * -4;
-		margin-bottom: 0;
-		height: 100vh;
-		background-color: $front-color;
-		transition: background-color 333ms;
-
-		// &:not(.data) {
-		// 	margin-bottom: 100vh;
-		// }
-
-		nav {
-			position: absolute;
-			top: 0;
-			left: 0;
-			z-index: 40;
-			
-			// display: flex;
-			align-items: center;
-			// gap: $base;
-			padding: $base;
-			width: 50%;
-			color: $back-color;
-
-			@media (max-width: $mobile) {
-				width: 100%;
-			}
-
-			> :global(figure) {
-				background-color: $front-color;
-			}
-
-			> a {
-				text-transform: uppercase;
-				// flex: 1;
-			}
-
-			> button {
-				display: inline;
-				text-align: left;
-				// flex: 7;
-				
-				&:before {
-					content: "● ";
-					opacity: 0;
-					transition: opacity 333ms;
-				}
-
-				&:hover,
-				&:focus {
-					&:before {
-						opacity: 1;
-					}
-				}
-			}
-
-			:global(form) {
-				margin-left: auto;
-			}
-		}
-
-		.scroll {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			z-index: 30;
-			border: none;
-			padding: 0 $base;
-
-			:global(.light) & {
-				color: var(--back-color);
-			}
-			
-			transition: color 333ms;
-
-			:global(svg) {
-				width: 100%;
-				height: 100%;
-			}
-		}
-	}
+	
 </style>
