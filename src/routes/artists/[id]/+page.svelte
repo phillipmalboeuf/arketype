@@ -153,6 +153,7 @@
 
           :global(img) {
             width: auto;
+            max-width: 16vw;
           }
         }
 
