@@ -28,14 +28,14 @@
 
   <nav class="flex" class:home>
     {#if home}
-		<a class="col col--3of12 col--mobile--4of12" href="/">Arketype</a>
+		<a class="col {home ? 'col--3of12 col--mobile--4of12' : ''}" href="/">Arketype</a>
     {:else}
-    <button class="col col--4of12 col--mobile--6of12" on:click={() => {
+    <button class="col" on:click={() => {
 			paused ? player.play() : player.pause()
       paused = !paused
 		}}>{#if paused}Play{:else}Pause{/if}</button>
     {/if}
-		<button class="col col--4of12 col--mobile--6of12" on:click={() => {
+		<button class="col {home ? 'col--4of12 col--mobile--6of12' : ''}" on:click={() => {
 			muted = !muted
 			player.setMuted(muted)
 		}}>Sound {#if muted}On{:else}Off{/if}</button>
@@ -56,7 +56,16 @@
 		transition: background-color 333ms;
 
     &:not(.home) {
-      padding: $base;
+      margin: $base;
+			padding: 0;
+			height: auto;
+			aspect-ratio: 16 / 9;
+
+			:global(iframe),
+			:global(figure) {
+				height: auto;
+				aspect-ratio: 16 / 9;
+			}
     }
 
 		// &:not(.data) {
@@ -77,6 +86,8 @@
       }
 
       &:not(.home) {
+				gap: $gap * 2;
+				
         @media (min-width: $mobile) {
           font-size: $base * $scale * 2;
         }
