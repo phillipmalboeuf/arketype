@@ -1,7 +1,7 @@
 import { PUBLIC_VITE_LOCALE } from '$env/static/public'
 import type { TypeNavigationSkeleton } from '$lib/clients/content_types.js'
 import { content } from '$lib/clients/contentful'
-import UAParser from 'ua-parser-js'
+// import UAParser from 'ua-parser-js'
 
 export const load = async ({ request }) => {
   // let parser: UAParser = request.headers.has('User-Agent') && new UAParser(request.headers.get('User-Agent'))
