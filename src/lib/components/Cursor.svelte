@@ -5,10 +5,15 @@
 
   let x: number
   let y: number
+
+  function isTouchDevice() {
+    // @ts-ignore
+    return (('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
+  }
 </script>
 
 <svelte:document on:mousemove={(e) => {
-  if ($page.data.device !== 'desktop') return
+  if (isTouchDevice()) return
 
   // @ts-ignore
   if (!hovering && ['BUTTON', 'A', 'VIDEO'].includes(e.target.nodeName)) {
