@@ -51,7 +51,7 @@
 
   <div class="works">
     <nav>
-      <h2>Works</h2>
+      <h3>Works</h3>
       <!-- <a href="/projects">See more works</a> -->
     </nav>
 
@@ -146,7 +146,7 @@
         display: flex;
         gap: $base;
 
-        h2,
+        h3,
         aside,
         figure,
         nav {
@@ -179,14 +179,14 @@
           margin-top: 50vw;
           gap: $mobile_base * 2;
 
-          h2,
+          h3,
           aside,
           figure,
           nav {
             flex: none;
           }
 
-          h2 {
+          h3 {
             order: -2;
           }
 
