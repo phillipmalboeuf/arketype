@@ -109,6 +109,17 @@ export function isTypeProject<Modifiers extends ChainModifiers, Locales extends 
     return entry.sys.contentType.sys.id === 'project'
 }
 
+export interface TypeProjectsFields {
+    projects?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeProjectSkeleton>>;
+}
+
+export type TypeProjectsSkeleton = EntrySkeletonType<TypeProjectsFields, "projects">;
+export type TypeProjects<Modifiers extends ChainModifiers, Locales extends LocaleCode = LocaleCode> = Entry<TypeProjectsSkeleton, Modifiers, Locales>;
+
+export function isTypeProjects<Modifiers extends ChainModifiers, Locales extends LocaleCode>(entry: Entry<EntrySkeletonType, Modifiers, Locales>): entry is TypeProjects<Modifiers, Locales> {
+    return entry.sys.contentType.sys.id === 'projects'
+}
+
 export interface TypeServiceFields {
     title: EntryFieldTypes.Symbol;
     id: EntryFieldTypes.Symbol;
