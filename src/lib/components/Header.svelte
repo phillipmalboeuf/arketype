@@ -12,14 +12,22 @@
 </script>
 
 <header class="mobile">
+  {#if ['/projects/[id]', '/artists/[id]'].includes($page.route.id)}
+  <a class="logo" href={$page.route.id.replace('/[id]', '')}>Retour</a>
+  {:else}
   <a class="logo" href="/">Arketype</a>
+  {/if}
   <button on:click={() => visible = !visible}>{#if visible}Close{:else}Menu{/if}</button>
 </header>
 
 <header class:visible class="flex">
   <div class="col col--6of12 col--mobile--12of12">
     <nav class="flex main">
+      {#if ['/projects/[id]', '/artists/[id]'].includes($page.route.id)}
+      <a class="col col--3of12 logo" href={$page.route.id.replace('/[id]', '')}>Retour</a>
+      {:else}
       <a class="col col--3of12 logo" href="/">Arketype</a>
+      {/if}
 
       {#each header.fields.links as link}
       <a href={link.fields.path} {...link.fields.external && { rel: "external", target: "_blank" }}

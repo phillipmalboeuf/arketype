@@ -99,6 +99,15 @@
       border-radius: $radius;
       background: linear-gradient(0.25turn, var(--gradient));
 
+      &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        height: 1.1em;
+        width: 1.1em;
+        background-color: $back-color;
+        border-radius: 50%;
+        border: 0.5px solid;
+      }
+
       @media (max-width: $mobile) {
         opacity: 1 !important;
         width: $base * 10;
@@ -117,7 +126,7 @@
       width: 0.88em;
       height: 0.88em;
       border-radius: $radius;
-      background: linear-gradient(0.5turn, var(--gradient));
+      background: linear-gradient(0.25turn, var(--gradient));
 
       @media (max-width: $mobile) {
         opacity: 0 !important;
