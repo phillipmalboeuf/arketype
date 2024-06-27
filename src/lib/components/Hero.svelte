@@ -12,8 +12,8 @@
   <h1>{item.fields.title}</h1>
   {:else}
   <h1 class="gallery">
-  {#each item.fields.title.split(" ") as t}
-  <span>{t}</span>
+  {#each item.fields.title.split(" ") as t, i}
+  <span class:hide={item.fields.hideLast && i > item.fields.title.split(" ").length - item.fields.hideLast - 1}>{t}</span>
   {/each}
 
   {#each item.fields.media as media, i}
@@ -59,6 +59,19 @@
           order: -2;
           &:nth-child(n + 3) {
             order: 1;
+          }
+        }
+
+        @media (min-width: $mobile) {
+          span.hide {
+            opacity: 0;
+            transition: opacity 666ms;
+          }
+
+          &:hover {
+            span.hide {
+              opacity: 1;
+            }
           }
         }
 

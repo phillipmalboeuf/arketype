@@ -24,6 +24,7 @@ export interface TypeHeroFields {
     id?: EntryFieldTypes.Symbol;
     media?: EntryFieldTypes.Array<EntryFieldTypes.AssetLink>;
     afterWord?: EntryFieldTypes.Integer;
+    hideLast?: EntryFieldTypes.Integer;
 }
 
 export type TypeHeroSkeleton = EntrySkeletonType<TypeHeroFields, "hero">;
