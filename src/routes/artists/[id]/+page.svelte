@@ -108,7 +108,7 @@
       }
 
       @media (max-width: $mobile) {
-        display: block;
+        // display: block;
         font-size: $mobile_base * $mobile_scale * 4;
 
         figure {
@@ -123,7 +123,11 @@
             height: auto;
           }
 
-          &:last-child {
+          &:not(:first-of-type) {
+            display: none;
+          }
+
+          &:first-of-type {
             margin-bottom: $mobile_base * -4;
           }
         }
@@ -153,7 +157,10 @@
 
           :global(img) {
             width: auto;
-            max-width: 16vw;
+
+            @media (min-width: $mobile) {
+              max-width: 16vw;
+            }
           }
         }
 

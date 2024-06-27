@@ -50,7 +50,8 @@
         display: flex;
         align-items: flex-end;
         flex-wrap: wrap;
-        gap: $base * 0.5;
+        column-gap: 1vw;
+        row-gap: $base * 0.5;
 
         font-size: 12vw;
 
@@ -71,6 +72,19 @@
             width: auto;
           }
         }
+
+        @media (max-width: $mobile) {
+          // display: block;
+          font-size: $mobile_base * $mobile_scale * 4;
+
+          figure {
+            height: auto;
+
+            &:not(:first-of-type):not(:nth-of-type(2)) {
+              display: none;
+            }
+          }
+        }
       }
     }
 
@@ -81,6 +95,12 @@
         &.gallery {
           figure {
             height: 7vw;
+          }
+
+          @media (max-width: $mobile) {
+            figure {
+              height: 10vh;
+            }
           }
         }
       }

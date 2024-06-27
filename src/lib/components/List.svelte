@@ -10,7 +10,7 @@
   export let item: Entry<TypeListSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">
 </script>
 
-<main id={item.fields.id}>
+<main id={item.fields.id} class:half={item.fields.id === 'clients'}>
   <ol>
     {#if item.fields.title}
     <li><h3>{item.fields.title}</h3></li>
@@ -56,6 +56,16 @@
           &:not(:first-child) {
             border-top: none;
           }
+        }
+      }
+    }
+
+    &.half {
+      @media (max-width: $mobile) {
+        li:not(:first-child) {
+          $width: (100% / 2);
+          $adjust: calc(#{$base} / #{2});
+          width: calc(#{$width} - #{$base} + #{$adjust});
         }
       }
     }

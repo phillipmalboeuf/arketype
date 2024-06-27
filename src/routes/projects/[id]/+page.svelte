@@ -147,6 +147,7 @@
       }
 
       &.description {
+        padding-top: 0;
         gap: $base;
 
         @media (max-width: $mobile) {

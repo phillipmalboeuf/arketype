@@ -112,7 +112,7 @@
 
     :global(.text) {
       max-width: $base * 33;
-      @media (min-width: $mobile) { margin-left: 20vw; }
+      @media (min-width: $mobile) { margin-left: calc(10vw + ($base * 3) - 2px); }
     }
   }
 
