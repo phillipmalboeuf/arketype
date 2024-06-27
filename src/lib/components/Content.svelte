@@ -5,7 +5,8 @@
   import Text from './Text.svelte'
   import Hero from './Hero.svelte'
   import List from './List.svelte'
-  import Vimeo from './Vimeo.svelte'
+  // import Vimeo from './Vimeo.svelte'
+  import Video from './Video.svelte'
 
   export let content: Entry<TypeHeroSkeleton | TypeListSkeleton | TypeTextSkeleton | TypeArtistSkeleton | TypeProjectSkeleton | TypeVimeoSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string>[]
 </script>
@@ -19,7 +20,7 @@
   {:else if isTypeList(item)}
   <List {item} />
   {:else if isTypeVimeo(item)}
-  <Vimeo {item} />
+  <Video link={item.fields.vimeoLink} golden />
   {/if}
 </section>
 {/each}

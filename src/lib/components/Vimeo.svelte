@@ -5,7 +5,7 @@
   import type { TypeVimeoSkeleton } from '$lib/clients/content_types'
 
   export let item: Entry<TypeVimeoSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">
-  export let home: boolean = false
+  // export let home: boolean = false
 
   let innerHeight: number
 
@@ -16,26 +16,23 @@
 
 <svelte:window bind:innerHeight />
 
-<header class:home>
-  {#if home}
+<header>
 	<button class="scroll" on:click={() => {
 		window.scrollTo({ top: innerHeight, behavior: 'smooth' })
 	}}>
 		<!-- <Logotype /> -->
 	</button>
-  {/if}
 	<Video background bind:player={player} link={item.fields.vimeoLink} />
 
-  <nav class="flex" class:home>
-    {#if home}
-		<a class="col {home ? 'col--3of12 col--mobile--4of12' : ''}" href="/">Arketype</a>
-    {:else}
+  <nav class="flex">
+		<a class="col col--3of12 col--mobile--4of12" href="/">Arketype</a>
+    <!-- {:else}
     <button class="col" on:click={() => {
 			paused ? player.play() : player.pause()
       paused = !paused
 		}}>{#if paused}Play{:else}Pause{/if}</button>
-    {/if}
-		<button class="col {home ? 'col--4of12 col--mobile--6of12' : ''}" on:click={() => {
+    {/if} -->
+		<button class="col col--4of12 col--mobile--6of12" on:click={() => {
 			muted = !muted
 			player.setMuted(muted)
 		}}>Sound {#if muted}On{:else}Off{/if}</button>
@@ -49,53 +46,20 @@
 		// cursor: pointer;
 		position: relative;
 		z-index: 99;
-		// margin-top: $base * -4;
 		margin-bottom: 0;
 		height: 100vh;
 		background-color: $front-color;
 		transition: background-color 333ms;
-
-    &:not(.home) {
-      margin: $base;
-			padding: 0;
-			height: auto;
-			aspect-ratio: 16 / 9;
-
-			:global(iframe),
-			:global(figure) {
-				height: auto;
-				aspect-ratio: 16 / 9;
-			}
-    }
-
-		// &:not(.data) {
-		// 	margin-bottom: 100vh;
-		// }
 
 		nav {
       position: absolute;
       z-index: 40;
 
       left: 0;
-      bottom: 0;
-
-      &.home {
-        bottom: auto;
-        top: 0;
-        z-index: 40;
-      }
-
-      &:not(.home) {
-				gap: $gap * 2;
-				
-        @media (min-width: $mobile) {
-          font-size: $base * $scale * 2;
-        }
-      }
+      bottom: auto;
+      top: 0;
 			
-			// display: flex;
 			align-items: center;
-			// gap: $base;
 			padding: $base;
 			width: 50%;
 			color: $back-color;
@@ -130,10 +94,6 @@
 						opacity: 1;
 					}
 				}
-			}
-
-			:global(form) {
-				margin-left: auto;
 			}
 		}
 

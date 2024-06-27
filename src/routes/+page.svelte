@@ -48,7 +48,7 @@
 <Shapes type="work" />
 
 {#if !hidden && data.vimeo}
-<Vimeo item={data.vimeo} home />
+<Vimeo item={data.vimeo} />
 {/if}
 
 <Header header={$page.data.header} />

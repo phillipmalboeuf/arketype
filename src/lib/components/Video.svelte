@@ -2,20 +2,73 @@
   import { browser } from '$app/environment'
   import type Player from 'vimeo__player'
 	// import Vimeo from 'vimeo__player'
-  import { onMount } from 'svelte'
+  import { onDestroy, onMount } from 'svelte'
 	
 	export let link: string
   export let half = false
+	export let golden = false
   export let background = false
 
   export let player: Player = undefined
+
+	let element: HTMLElement
 	let paused = true
-	let muted = true
+	let muted = background
+	let fullscreen = false
 	let ready = false
 	let hover = false
 
+	let time: number = 0
+	let duration: number
+
 	let top: number
 	let left: number
+
+	function togglePaused() {
+    if (paused) {
+			paused = false
+			player.play()
+		} else {
+			paused = true
+			player.pause()
+		}
+  }
+
+	function requestToggleFullscreen() {
+    if (!fullscreen) {
+      element.requestFullscreen()
+    } else {
+      document.exitFullscreen()
+    }
+  }
+
+  function toggleFullscreen() {
+    fullscreen = !fullscreen
+  }
+
+	function keydown(e) {
+    if (e.key === ' ') {
+      e.preventDefault()
+      togglePaused()
+    }
+  }
+
+	async function seek(t: number) {
+		time = t
+
+		const paused = player.getPaused()
+		if (!paused) { await player.pause() }
+		await player.setCurrentTime(t)
+		if (!paused) { player.play() }
+  }
+
+	onMount(() => {
+    document.addEventListener('webkitfullscreenchange', toggleFullscreen, false)
+
+    // volume = localStorage.getItem("volume") === "muted" ? 0 : 1
+
+    return () => document.removeEventListener('webkitfullscreenchange', toggleFullscreen)
+  })
 
 	onMount(async () => {
 		if (browser) {
@@ -25,14 +78,28 @@
 			
 			player = new Vimeo('video') as Player
 
-			function loaded () {
+			async function loaded () {
 				background ? player.play() : player.pause()
 				ready = true
+				duration = await player.getDuration()
 			}
 
 			player.on("loaded", loaded)
+			player.on("timeupdate", (e) => {
+				time = e.seconds
+			})
 		}
 	})
+
+	onDestroy(() => {
+		if (browser && player) {
+			player.destroy()
+		}
+	})
+
+	function t(t: number) {
+    return Math.floor(t / 60) + ":" + ("0" + (t % 60).toFixed()).slice(-2)
+  }
 
 	function format(url: string) {
 		if (url.includes('player.vimeo.com')) return url;
@@ -41,28 +108,32 @@
 	}
 </script>
 
-<figure class:half class:ready>
+<svelte:window on:keydown={keydown} />
+
+<figure class:half class:golden class:ready bind:this={element}>
   {#if browser}
   <iframe title="Video" src="{format(link)}&loop=1&background=1{background ? '&portrait=0&muted=1&playsinline=1&autoplay=1' : '&muted=0'}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen id="video"></iframe>
   {/if}
 
 	{#if !background && player}
-	<!-- <button on:click|stopPropagation={() => {
-		muted = !muted
-		player.setMuted(muted)
-	}}>Sound {#if muted}On{:else}Off{/if}</button> -->
 	<button id="video" class:hover on:pointerenter={() => hover = true} on:pointerleave={() => hover = false} on:pointermove={e => {
 		top = e.offsetY
 		left = e.offsetX
-	}} on:click|stopPropagation={() => {
-		if (paused) {
-			paused = false
-			player.play()
-		} else {
-			paused = true
-			player.pause()
-		}
-	}}><span style="top: {top}px; left: {left}px">{#if paused}● Play{:else}◼︎ Pause{/if}</span></button>
+	}} on:click|stopPropagation={togglePaused}><span style="top: {top}px; left: {left}px">{#if paused}● Play{:else}◼︎ Pause{/if}</span></button>
+
+	<nav class="flex flex--gapped">
+		{#if duration}
+		<button class="col col--2of12" on:click|stopPropagation={togglePaused} style="left: {time / duration * 100}%">{#if paused}●{:else}◼︎{/if}&nbsp;{t(time)}</button>
+		<input class:hover id="time" name="time" type="range" value={time} min={0} step={0.01} max={duration}
+			on:input={e => seek(Number(e.currentTarget.value))} />
+		{/if}
+
+		<button on:click|stopPropagation={() => {
+			muted = !muted
+			player.setMuted(muted)
+		}}>Sound {#if muted}On{:else}Off{/if}</button>
+		<button on:click={requestToggleFullscreen}>{#if fullscreen}Close{:else}Full Screen{/if}</button>
+	</nav>
   {/if}
 </figure>
 
@@ -76,11 +147,7 @@
 		opacity: 0;
 		// will-change: opacity;
 		transition: opacity 3333ms;
-
-		&:before {
-			content: "";
-			
-		}
+		margin-bottom: $gap;
 
 		&.ready {
 			opacity: 1;
@@ -96,8 +163,20 @@
 			}
     }
 
+		&.golden {
+      margin: $base 0;
+			padding: 0;
+			height: auto;
+			aspect-ratio: 16 / 9;
+
+			iframe {
+				height: auto;
+				aspect-ratio: 16 / 9;
+			}
+    }
+
 		@media (max-width: $mobile) {
-			margin-bottom: $gap;
+			margin-bottom: $gap * 2;
 
 			&.half {
 			// height: 56.25vw;
@@ -120,7 +199,60 @@
     object-fit: cover;
 	}
 
-	button {
+	nav {
+		position: absolute;
+		top: calc(100% + ($base * 0.1));
+		left: 0;
+		width: 100%;
+		z-index: 3;
+
+		input[type="range"] {
+			position: absolute;
+			bottom: calc(100% + ($base * 1.25));
+			left: $base;
+			right: $base;
+
+      width: calc(100% - ($base * 2));
+      cursor: col-resize;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      height: 2px;
+      border-radius: $radius;
+      background: $back-color;
+
+			opacity: 0;
+			transition: opacity 333ms;
+
+			&.hover,
+			&:hover,
+			&:focus {
+				opacity: 1;
+			}
+
+      &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        height: $base * 0.75;
+        width: $base * 0.75;
+        background-color: $back-color;
+        border-radius: 50%;
+        // border: 0.5px solid;
+      }
+
+			@supports (mix-blend-mode: exclusion) {
+				color: white;
+				mix-blend-mode: difference;
+			}
+    }
+
+		button {
+			&:last-child {
+				margin-left: auto;
+			}
+		}
+	}
+
+	button#video {
 		// cursor: none;
 		position: absolute;
 		top: 0;
@@ -155,7 +287,7 @@
 			// width: auto;
 			opacity: 1;
 			display: flex;
-			align-items: flex-end;
+			align-items: flex-start;
 			justify-content: flex-end;
 
 			span {
