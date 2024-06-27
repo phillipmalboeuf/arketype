@@ -17,7 +17,7 @@
   {#each projects.items as project}
   <a href="/projects/{project.fields.id}" style={project.fields.color && `--hover: ${project.fields.color}`}>
     <td>
-      <h2>{project.fields.title}</h2>
+      <h3>{project.fields.title}</h3>
     </td>
 
     <td class="artists">
@@ -79,13 +79,13 @@
         }
 
         ~ a {
-          opacity: 0.5;
+          @media (min-width: $mobile) { opacity: 0.5; }
         }
       }
 
       &:has(~ a:hover),
       &:has(~ a:focus) {
-        opacity: 0.5;
+        @media (min-width: $mobile) { opacity: 0.5; }
       }
 
       @media (min-width: $mobile) {
@@ -124,6 +124,12 @@
         padding: 0 ($mobile_base * 0.5) ($mobile_base * 0.5);
 
         position: relative;
+
+        &:first-child {
+          td {
+            border-top: 1px solid;
+          }
+        }
 
         &:after {
           content: "+";

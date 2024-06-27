@@ -75,7 +75,9 @@
 
         @media (max-width: $mobile) {
           // display: block;
+          font-weight: bold;
           font-size: $mobile_base * $mobile_scale * 4;
+          row-gap: $base * 0.25;
 
           figure {
             height: auto;

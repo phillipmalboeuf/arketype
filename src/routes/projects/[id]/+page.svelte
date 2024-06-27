@@ -68,7 +68,7 @@
 {#if data.project.fields.related?.length}
 <footer>
   <nav>
-    <h3>From the same artist</h3>
+    <h4>From the same artist</h4>
     <a href="/projects">See more works</a>
   </nav>
   <Projects tight projects={{ total: data.project.fields.related.length, items: data.project.fields.related, skip: 0, limit: data.project.fields.related.length }} />
@@ -128,13 +128,13 @@
             text-decoration: none;
             
             ~ a {
-              opacity: 0.333;
+              @media (min-width: $mobile) { opacity: 0.333; }
             }
           }
 
           &:has(~ a:hover),
           &:has(~ a:focus) {
-            opacity: 0.333;
+            @media (min-width: $mobile) { opacity: 0.333; }
           }
         }
 

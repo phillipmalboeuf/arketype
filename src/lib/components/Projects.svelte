@@ -22,7 +22,7 @@
         {#if tight}
         <h5>{project.fields.title}</h5>
         {:else}
-        <h2>{project.fields.title}</h2>
+        <h3>{project.fields.title}</h3>
         {/if}
 
         <ul class="list--nostyle">
@@ -58,8 +58,12 @@
       margin: $base 0;
 
       > h5,
-      > h2 {
+      > h3 {
         width: 50%;
+
+        @media (min-width: $mobile) {
+          margin-top: -4px;
+        }
       }
       
       > ul {
@@ -71,8 +75,9 @@
         margin-top: $base * 0.25;
 
         > h5,
-        > h2 {
+        > h3 {
           font-size: $base;
+          font-weight: normal;
           line-height: $scale;
         }
 

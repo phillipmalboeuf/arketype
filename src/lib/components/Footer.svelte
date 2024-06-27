@@ -80,13 +80,13 @@
         text-decoration: none;
         
         ~ a {
-          opacity: 0.333;
+          @media (min-width: $mobile) { opacity: 0.333; }
         }
       }
 
       &:has(~ a:hover),
       &:has(~ a:focus) {
-        opacity: 0.333;
+        @media (min-width: $mobile) { opacity: 0.333; }
       }
     }
 

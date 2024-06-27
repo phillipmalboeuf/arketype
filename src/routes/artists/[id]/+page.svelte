@@ -31,7 +31,7 @@
   </header>
 
   <div class="description">
-    <h2>{data.artist.fields.service.fields.artist || data.artist.fields.service.fields.title}</h2>
+    <h3>{data.artist.fields.service.fields.artist || data.artist.fields.service.fields.title}</h3>
     
     <aside>
       <Document body={data.artist.fields.description} />
@@ -49,9 +49,9 @@
     </nav>
   </div>
 
-  <div>
+  <div class="works">
     <nav>
-      <h2 style="opacity: 0.3;">Works</h2>
+      <h2>Works</h2>
       <!-- <a href="/projects">See more works</a> -->
     </nav>
 
@@ -86,7 +86,8 @@
       display: flex;
       align-items: flex-end;
       flex-wrap: wrap;
-      gap: $base * 0.5;
+      column-gap: 1vw;
+      row-gap: $base * 0.5;
 
       font-size: 12vw;
 
@@ -109,7 +110,9 @@
 
       @media (max-width: $mobile) {
         // display: block;
-        font-size: $mobile_base * $mobile_scale * 4;
+        font-size: $mobile_base * $mobile_scale * 3;
+        font-weight: bold;
+        row-gap: $base * 0.25;
 
         figure {
           display: block;
@@ -128,7 +131,7 @@
           }
 
           &:first-of-type {
-            margin-bottom: $mobile_base * -4;
+            // margin-bottom: $mobile_base * -2;
           }
         }
       }
@@ -199,7 +202,7 @@
 
           figure {
             position: absolute;
-            bottom: calc(100% + 25vw);
+            bottom: calc(100% + 15vw);
             width: 50vw;
             right: 0;
 
@@ -207,6 +210,14 @@
               width: 100%;
             }
           }
+        }
+      }
+
+      &.works {
+        border-top: 1px solid $grey;
+
+        h2 {
+          color: $grey;
         }
       }
     }

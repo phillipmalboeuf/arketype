@@ -198,13 +198,13 @@
       &:has(a:hover),
       &:has(a:focus) {
         ~ li {
-          opacity: 0.333;
+          @media (min-width: $mobile) { opacity: 0.333; }
         }
       }
 
       &:has(~ li > a:hover),
       &:has(~ li > a:focus) {
-        opacity: 0.333;
+        @media (min-width: $mobile) { opacity: 0.333; }
       }
 
       @media (max-width: $mobile) {
