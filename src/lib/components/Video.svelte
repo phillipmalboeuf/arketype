@@ -63,11 +63,11 @@
   }
 
 	onMount(() => {
-    document.addEventListener('webkitfullscreenchange', toggleFullscreen, false)
+    document.addEventListener('fullscreenchange', toggleFullscreen, false)
 
     // volume = localStorage.getItem("volume") === "muted" ? 0 : 1
 
-    return () => document.removeEventListener('webkitfullscreenchange', toggleFullscreen)
+    return () => document.removeEventListener('fullscreenchange', toggleFullscreen)
   })
 
 	onMount(async () => {
@@ -110,7 +110,7 @@
 
 <svelte:window on:keydown={keydown} />
 
-<figure class:half class:golden class:ready bind:this={element}>
+<figure class:half class:golden class:ready class:fullscreen bind:this={element}>
   {#if browser}
   <iframe title="Video" src="{format(link)}&loop=1&background=1{background ? '&portrait=0&muted=1&playsinline=1&autoplay=1' : '&muted=0'}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen id="video"></iframe>
   {/if}
@@ -154,11 +154,9 @@
 		}
 
     &.half {
-			// height: 56.25vw;
 			height: 66vh;
 
 			iframe {
-      	// height: 56.25vw;
 				height: 66vh;
 			}
     }
@@ -174,6 +172,14 @@
 				aspect-ratio: 16 / 9;
 			}
     }
+
+		&.fullscreen {
+			height: 100vh !important;
+
+			iframe {
+				height: 100vh !important;
+			}
+		}
 
 		@media (max-width: $mobile) {
 			margin-bottom: $gap * 2;
