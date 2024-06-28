@@ -154,6 +154,7 @@
           h2 {
             text-transform: uppercase;
             font-size: 7vw;
+            letter-spacing: -0.0125em;
             font-weight: normal;
           }
 
