@@ -317,7 +317,7 @@
 			opacity: 1;
 			display: flex;
 			align-items: flex-start;
-			justify-content: flex-end;
+			justify-content: flex-start;
 
 			span {
 				pointer-events: auto;
