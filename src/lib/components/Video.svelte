@@ -17,12 +17,14 @@
 	let fullscreen = false
 	let ready = false
 	let hover = false
+	let inactive = false
 
 	let time: number = 0
 	let duration: number
 
 	let top: number
 	let left: number
+	let inactiveTimeout: NodeJS.Timeout
 
 	function togglePaused() {
     if (paused) {
@@ -51,6 +53,12 @@
       e.preventDefault()
       togglePaused()
     }
+  }
+
+	function activate() {
+    clearTimeout(inactiveTimeout)
+    inactiveTimeout = setTimeout(() => inactive = true, 1666)
+    inactive = false
   }
 
 	async function seek(t: number) {
@@ -110,7 +118,7 @@
 
 <svelte:window on:keydown={keydown} />
 
-<figure class:half class:golden class:ready class:fullscreen bind:this={element}>
+<figure class:half class:golden class:ready class:inactive class:fullscreen on:mousemove={activate} bind:this={element}>
   {#if browser}
   <iframe title="Video" src="{format(link)}&loop=1&background=1{background ? '&portrait=0&muted=1&playsinline=1&autoplay=1' : '&muted=0'}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen id="video"></iframe>
   {/if}
@@ -191,6 +199,15 @@
 				iframe {
 					// height: 56.25vw;
 					height: 50vh;
+				}
+			}
+		}
+
+		&.inactive {
+			@media (min-width: $mobile) {
+				input[type="range"],
+				button#video {
+					opacity: 0 !important;
 				}
 			}
 		}
