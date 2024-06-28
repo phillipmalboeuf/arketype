@@ -5,6 +5,7 @@
   import { page } from '$app/stores'
 
   import ColorToggle from './ColorToggle.svelte'
+  import Hour from './Hour.svelte';
 
   export let header: Entry<TypeNavigationSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">
 
@@ -42,8 +43,9 @@
     <nav class="flex flex--end secondary">
       <!-- <a class="col col--2of12 col--mobile--6of12 locale" href="/fr">FR</a> -->
 
-      <div class="col col--2of12 col--mobile--6of12">
+      <div class="col col--4of12 col--mobile--12of12 flex flex--spaced">
         <ColorToggle />
+        <Hour />
       </div>
     </nav>
   </div>
@@ -165,6 +167,10 @@
           margin-top: $mobile_base * 6;
           padding: ($mobile_base * 0.5);
           border-top: 1px solid $grey;
+
+          :global(aside:last-child) {
+            order: -1;
+          }
         }
 
         // :global(aside) {

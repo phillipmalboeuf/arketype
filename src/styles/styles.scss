@@ -222,6 +222,10 @@ table {
 		justify-content: flex-end;
 	}
 
+	&.flex--spaced {
+		justify-content: space-between;
+	}
+
 	&.flex--column {
 		flex-direction: column;
 	}
