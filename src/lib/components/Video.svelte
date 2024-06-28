@@ -186,10 +186,18 @@
 			}
     }
 
+		&.half,
+		&.golden {
+			iframe {
+				border-radius: $radius;
+			}
+		}
+
 		&.fullscreen {
 			height: 100vh !important;
 
 			iframe {
+				border-radius: 0;
 				height: 100vh !important;
 			}
 		}
