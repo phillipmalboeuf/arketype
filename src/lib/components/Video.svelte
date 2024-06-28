@@ -129,7 +129,7 @@
 	<button id="video" class:hover on:pointerenter={() => hover = true} on:pointerleave={() => hover = false} on:pointermove={e => {
 		top = e.offsetY
 		left = e.offsetX
-	}} on:click|stopPropagation={togglePaused}><span style="top: {top}px; left: {left}px">{#if paused}● Play{:else}◼︎ Pause{/if}</span></button>
+	}} on:click|stopPropagation={togglePaused}><span style="top: {top}px; left: {left}px">{#if paused}●&nbsp;Play{:else}◼︎&nbsp;Pause{/if}</span></button>
 
 	<nav class="flex flex--gapped">
 		{#if duration}
