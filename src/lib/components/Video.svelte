@@ -21,6 +21,7 @@
 
 	let time: number = 0
 	let duration: number
+	let ar: string
 
 	let top: number
 	let left: number
@@ -90,6 +91,7 @@
 				background ? player.play() : player.pause()
 				ready = true
 				duration = await player.getDuration()
+				ar = `${await player.getVideoWidth()} / ${await player.getVideoHeight()}`
 			}
 
 			player.on("loaded", loaded)
@@ -118,7 +120,7 @@
 
 <svelte:window on:keydown={keydown} />
 
-<figure class:half class:golden class:ready class:inactive class:fullscreen on:mousemove={activate} bind:this={element}>
+<figure class:half class:golden class:ready class:inactive class:fullscreen on:mousemove={activate} style:--ar={ar} bind:this={element}>
   {#if browser}
   <iframe title="Video" src="{format(link)}&loop=1&background=1{background ? '&portrait=0&muted=1&playsinline=1&autoplay=1' : '&muted=0'}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen id="video"></iframe>
   {/if}
@@ -148,14 +150,18 @@
 <style lang="scss">
 
 	figure {
-		display: block;
 		position: relative;
-    // width: 100%;
+
+		display: flex;
+		// justify-content: center;
+		aspect-ratio: var(--ar);
+    max-width: 100%;
     height: 100vh;
 		opacity: 0;
-		// will-change: opacity;
+
+		will-change: opacity;
 		transition: opacity 3333ms;
-		margin-bottom: $gap;
+		margin: 0 auto $gap;
 
 		&.ready {
 			opacity: 1;
@@ -171,13 +177,12 @@
 
 		&.golden {
       margin: $base 0;
-			padding: 0;
 			height: auto;
-			aspect-ratio: 16 / 9;
+			// aspect-ratio: 16 / 9;
 
 			iframe {
 				height: auto;
-				aspect-ratio: 16 / 9;
+				// aspect-ratio: 16 / 9;
 			}
     }
 
@@ -219,7 +224,8 @@
     // left: 0;
     width: 100%;
     height: 100vh;
-    object-fit: cover;
+		background-color: black;
+    // object-fit: cover;
 	}
 
 	nav {

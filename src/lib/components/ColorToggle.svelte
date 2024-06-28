@@ -9,7 +9,7 @@
   onMount(async () => {
 		if (browser) {
       if ($dark === undefined && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        dark.set(true)
+        dark.set(false)
       }
     }
   })

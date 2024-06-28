@@ -88,9 +88,9 @@
   }
 
   header {
-    figure {
-      background-color: black;
-    }
+    // figure {
+    //   background-color: black;
+    // }
 
     h1 {
       text-transform: uppercase;
