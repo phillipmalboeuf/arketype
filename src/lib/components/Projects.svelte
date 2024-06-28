@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { TypeProjectSkeleton } from '$lib/clients/content_types';
+  import type { TypeProjectSkeleton } from '$lib/clients/content_types'
   import type { ContentfulCollection, Entry } from 'contentful'
   import Media from './Media.svelte'
   import { year } from '$lib/formatters'

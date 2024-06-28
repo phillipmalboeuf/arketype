@@ -245,7 +245,7 @@
 
 		input[type="range"] {
 			position: absolute;
-			bottom: calc(100% + ($base * 1.25));
+			bottom: 100%;
 			left: $base;
 			right: $base;
 
@@ -254,9 +254,18 @@
       -webkit-appearance: none;
       -moz-appearance: none;
       appearance: none;
-      height: 2px;
+      height: $base * 2;
       border-radius: $radius;
-      background: $back-color;
+
+			&:after {
+				content: "";
+				position: absolute;
+				left: 0;
+				top: calc(($base * 1) - 1px);
+				width: 100%;
+				height: 2px;
+      	background: $back-color;
+			}
 
 			opacity: 0;
 			transition: opacity 333ms;
