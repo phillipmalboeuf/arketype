@@ -94,3 +94,10 @@
   {/if}
   {/if} -->
 {/if}
+
+<style lang="scss">
+  td,
+  th {
+    border-width: 0.5px;
+  }
+</style>

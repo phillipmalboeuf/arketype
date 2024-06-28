@@ -53,8 +53,6 @@
   <form class:hover on:submit|preventDefault style="--gradient: {colors.join(', ')}" on:pointerenter={() => hover = true} on:pointerleave={() => hover = false}>
     <input type="range" name="color" min="0" max="{100 * (colors.length - 1)}" bind:value on:input={e => {
       const step = Math.floor(value / 100)
-
-      console.log(step, value % 100, value)
       
       if (step === colors.length - 1) {
         color.set(colors[step])

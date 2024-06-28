@@ -58,7 +58,7 @@
 
   {#if data.project.fields.media}
   {#each data.project.fields.media as media, i}
-  <div class="col col--6of12 media media--{i}">
+  <div class="col col--6of12 col--mobile--12of12 media media--{i}">
     <Media {media} small />
   </div>
   {/each}

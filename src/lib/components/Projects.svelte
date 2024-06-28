@@ -27,7 +27,7 @@
 
         <ul class="list--nostyle">
           {#each project.fields.artists as artist}
-          <li>{artist.fields.service.fields.title} {artist.fields.name}</li>
+          <li><div><span>{artist.fields.service.fields.title}</span> <span>{artist.fields.name}</span></div></li>
           {/each}
         </ul>
 
@@ -67,7 +67,17 @@
       }
       
       > ul {
-        width: 30%;
+        width: 40%;
+      }
+
+      div {
+        display: flex;
+
+        span {
+          &:first-child {
+            width: 25%;
+          }
+        }
       }
 
       @media (max-width: $mobile) {

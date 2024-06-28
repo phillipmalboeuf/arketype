@@ -33,7 +33,7 @@
 	currentScroll = scrollY
 }} />
 
-<div class:up style={!!$color && `--color: ${$color}`} class:dark={$dark} class:light={$dark !== undefined && !$dark}>
+<div class:up style={!!$color && `--color: ${$color}; --override: currentColor;`} class:dark={$dark} class:light={$dark !== undefined && !$dark}>
 	{#if !$page.data.page || $page.data.page?.fields.id !== 'home'}<Header header={data.header} />{/if}
 
 	<main>

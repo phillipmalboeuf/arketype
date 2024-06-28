@@ -72,7 +72,7 @@
 
       &:hover,
       &:focus {
-        color: var(--hover);
+        color: var(--override, var(--hover));
 
         figure {
           opacity: 1;

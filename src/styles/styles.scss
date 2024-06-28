@@ -180,7 +180,7 @@ table {
 
 	td,
 	th {
-		border-bottom: 1px solid;
+		border-top: 1px solid;
 		padding: ($base * 0.5) 0;
 		white-space: pre-line;
 		width: calc(100% / var(--length));
@@ -193,10 +193,10 @@ table {
 	}
 
 	tr {
-		&:last-child {
+		&:first-child {
 			td,
 			th {
-				// border-bottom: 1px solid;
+				border-top: none;
 			}
 		}
 	}
@@ -220,6 +220,10 @@ table {
 
 	&.flex--end {
 		justify-content: flex-end;
+	}
+
+	&.flex--column {
+		flex-direction: column;
 	}
 
   &.flex--gapped {

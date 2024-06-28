@@ -12,27 +12,27 @@
   export let contact: Entry<TypeNavigationSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">
 </script>
 
-<footer>
+<footer class="flex">
   <figure>
     <Logotype />
   </figure>
 
   <a id="contact" />
-  <nav class="contact">
+  <nav class="contact col col--4of12 col--mobile--7of12 flex flex--column">
   {#each contact.fields.links as link}
   <a href={link.fields.path} {...link.fields.external && { rel: "external", target: "_blank" }}
     class:active={$page.url.pathname !== '/' && $page.url.pathname.startsWith(link.fields.path)}>{@html link.fields.label.replaceAll('\\n', '\n')}</a>
   {/each}
   </nav>
 
-  <nav class="social">
+  <nav class="social col col--4of12 col--mobile--5of12 flex flex--column">
   {#each social.fields.links as link}
   <a href={link.fields.path} {...link.fields.external && { rel: "external", target: "_blank" }}
     class:active={$page.url.pathname !== '/' && $page.url.pathname.startsWith(link.fields.path)}>{link.fields.label}</a>
   {/each}
   </nav>
   
-  <nav class="footer">
+  <nav class="footer col col--12of12 flex">
   {#each footer.fields.links as link}
   <a href={link.fields.path} {...link.fields.external && { rel: "external", target: "_blank" }}
     class:active={$page.url.pathname !== '/' && $page.url.pathname.startsWith(link.fields.path)}>{link.fields.label}</a>
@@ -53,11 +53,6 @@
     @media (max-width: $mobile) {
       padding: $mobile_base;
     }
-
-    display: flex;
-    flex-wrap: wrap;
-    // justify-content: space-between;
-    gap: $base;
 
     figure {
       width: 100%;
@@ -92,15 +87,15 @@
 
     .social,
     .contact {
-      display: flex;
-      flex-direction: column;
+      // display: flex;
+      // flex-direction: column;
       gap: $base * 0.25;
       margin-bottom: $base;
-      width: 33.3%;
+      margin: $base 0 $gap;
 
-      @media (max-width: $mobile) {
-        width: auto;
-      }
+      // @media (max-width: $mobile) {
+      //   width: auto;
+      // }
     }
 
     .contact {
@@ -111,8 +106,6 @@
 
     .footer {
       width: 100%;
-      display: flex;
-      flex-wrap: wrap;
       justify-content: space-between;
 
       @media (max-width: $mobile) {
