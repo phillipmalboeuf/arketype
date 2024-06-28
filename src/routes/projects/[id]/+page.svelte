@@ -37,19 +37,19 @@
 </header>
 
 <main class="flex flex--gapped">
-  <div class="col col--6of12 col--mobile--12of12 flex flex--gapped">
-    <div class="col col--3of12">Credits</div>
+  <div class="col col--6of12 credits flex flex--gapped">
+    <div class="col col--3of12 col--mobile--12of12">Credits</div>
     {#if data.project.fields.client}
-    <h3 class="col col--9of12">{data.project.fields.client}</h3>
+    <h3 class="col col--9of12 col--mobile--12of12">{data.project.fields.client}</h3>
     {/if}
   </div>
-  <div class="col col--6of12 col--mobile--12of12 artists">
+  <div class="col col--6of12 artists">
     {#each data.project.fields.artists as artist}
     <h3>{artist.fields.name} <small>{artist.fields.service.fields.artist || artist.fields.service.fields.title}</small></h3>
     {/each}
   </div>
 
-  <div class="col col--6of12 flex flex--gapped description">
+  <div class="col col--6of12 col--mobile--12of12 flex flex--gapped description">
     <!-- <div class="col col--3of12">{year(data.project.fields.date)}</div> -->
     {#if data.project.fields.description?.content}
     <div class="col col--9of12 col--mobile--12of12"><Document body={data.project.fields.description} /></div>
@@ -149,10 +149,6 @@
       &.description {
         padding-top: 0;
         gap: $base;
-
-        @media (max-width: $mobile) {
-          width: 100%;
-        }
       }
 
       &.media {
@@ -162,6 +158,38 @@
 
         &.media--1 {
           width: 100%;
+        }
+      }
+
+      @media (max-width: $mobile) {
+        padding-top: ($mobile_base * 0.25);
+
+        &.credits {
+          align-self: flex-start;
+          gap: ($mobile_base * 0.25);
+        }
+
+        &.artists {
+          align-self: flex-start;
+
+          h3 {
+            display: flex;
+            gap: ($mobile_base * 0.25);
+            flex-wrap: wrap;
+            margin-bottom: $mobile_gap;
+
+            &:not(:first-child) {
+              padding-top: ($mobile_base * 0.25);
+              border-top: 0.5px solid;
+            }
+
+            small {
+              order: -1;
+              margin-top: 0;
+              font-size: 1em;
+              width: 100%;
+            }
+          }
         }
       }
     }
