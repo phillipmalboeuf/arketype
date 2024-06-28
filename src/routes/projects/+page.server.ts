@@ -1,6 +1,6 @@
 import type { TypePageSkeleton, TypeProjectSkeleton, TypeProjectsSkeleton } from '$lib/clients/content_types'
 import { content } from '$lib/clients/contentful'
-import type { Entry } from 'contentful'
+import type { Entry, EntryCollection } from 'contentful'
 
 export const load = (async ({ locals, url, params }) => {
   const filter = url.searchParams.get("service")
@@ -39,7 +39,7 @@ export const load = (async ({ locals, url, params }) => {
   return {
     service: filter && services[filter],
     format,
-    projects: filter ? projects : list.items?.length ? { items: list.items[0].fields.projects } : projects,
+    projects: filter ? projects : list.items?.length ? { items: list.items[0].fields.projects } as EntryCollection<TypeProjectSkeleton, "WITHOUT_UNRESOLVABLE_LINKS"> : projects,
     // services: Object.values(services).sort((a, b) => b.count - a.count),
     services: Object.values(services).sort((a, b) => b.titre < a.titre ? 1 : -1),
     page: pages.items[0]
