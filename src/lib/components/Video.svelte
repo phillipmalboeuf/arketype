@@ -199,11 +199,11 @@
 
 			&.half {
 			// height: 56.25vw;
-				height: 50vh;
+				height: auto;
 
 				iframe {
 					// height: 56.25vw;
-					height: 50vh;
+					height: auto;
 				}
 			}
 		}
