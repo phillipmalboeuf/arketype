@@ -16,7 +16,7 @@
   </tr> -->
   {#each projects.items as project}
   <a href="/projects/{project.fields.id}" style={project.fields.color && `--hover: ${project.fields.color}`}>
-    <td>
+    <td class="title">
       <h3>{project.fields.title}</h3>
     </td>
 
@@ -92,6 +92,10 @@
         h2 {
           margin-top: $base * -0.5;
         }
+
+        td {
+          padding-right: $base;
+        }
         
         &:first-child {
           td {
@@ -100,14 +104,14 @@
         }
 
         .artists {
-          width: 20%;
+          width: 50%;
 
           > div {
             display: flex;
 
             span {
               &:first-child {
-                width: 25%;
+                width: 35%;
               }
             }
           }
@@ -116,11 +120,16 @@
         .client {
           width: 20%;
         }
+
+        .title {
+          width: 32%;
+        }
       }
 
       @media (max-width: $mobile) {
         display: flex;
         flex-wrap: wrap;
+        gap: ($mobile_gap * 0.5);
         padding: 0 ($mobile_base * 0.5) ($mobile_base * 0.5);
 
         position: relative;
@@ -140,6 +149,19 @@
         }
 
         color: var(--hover);
+
+        .artists {
+
+          > div {
+            display: flex;
+
+            span {
+              &:first-child {
+                width: 35%;
+              }
+            }
+          }
+        }
 
         td {
 

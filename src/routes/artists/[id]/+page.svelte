@@ -30,17 +30,17 @@
     </h1>
   </header>
 
-  <div class="description">
-    <h3>{data.artist.fields.service.fields.artist || data.artist.fields.service.fields.title}</h3>
+  <div class="description flex flex--gapped">
+    <h3 class="col col--3of12 col--mobile--6of12">{data.artist.fields.service.fields.artist || data.artist.fields.service.fields.title}</h3>
     
-    <aside>
+    <aside class="col col--3of12 col--mobile--12of12">
       <Document body={data.artist.fields.description} />
     </aside>
-    <figure>
+    <figure class="col col--4of12">
       <Media media={data.artist.fields.signature} />
     </figure>
 
-    <nav>
+    <nav class="col col--2of12 col--mobile--6of12">
       {#if data.artist.fields.links}
       {#each data.artist.fields.links as link}
       <a href={link.fields.path} {...link.fields.external && { rel: "external", target: "_blank" }}>{link.fields.label}</a>
@@ -143,15 +143,18 @@
       border-top: 1px solid;
 
       &.description {
-        display: flex;
-        gap: $base;
+        // display: flex;
+        // gap: $base;
 
-        h3,
-        aside,
-        figure,
-        nav {
-          flex: 1;
-        }
+        // h3,
+        // nav {
+        //   flex: 1;
+        // }
+
+        // aside,
+        // figure {
+        //   flex: 2;
+        // }
 
         figure {
           :global(.dark) & {
@@ -175,29 +178,30 @@
 
         @media (max-width: $mobile) {
           position: relative;
-          flex-wrap: wrap;
+          // flex-wrap: wrap;
           margin-top: 50vw;
-          gap: $mobile_base * 2;
+          // gap: $mobile_base * 2;
 
-          h3,
-          aside,
-          figure,
-          nav {
-            flex: none;
-          }
+          // h3,
+          // aside,
+          // figure,
+          // nav {
+          //   flex: none;
+          // }
 
           h3 {
             order: -2;
           }
 
           nav {
-            flex: 1;
+            // flex: 1;
             justify-content: flex-end;
             order: -1;
           }
 
           aside {
-            width: 100%;
+            // width: 100%;
+            margin-top: $mobile_gap * 2;
           }
 
           figure {
@@ -216,7 +220,7 @@
       &.works {
         border-top: 1px solid $grey;
 
-        h2 {
+        h3 {
           color: $grey;
         }
       }
