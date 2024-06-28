@@ -19,7 +19,7 @@
 
 <aside>
   {#if time}
-  <time datetime="{time.toISO()}">{time.toFormat('hh:mm a z')}</time>
+  <time datetime="{time.toISO()}">{@html time.toFormat('hh:mm a z').split(' ').join('&nbsp;')}</time>
   {/if}
 </aside>
 

@@ -82,6 +82,7 @@
   form {
     position: relative;
     display: flex;
+    align-items: center;
 
     input {
       opacity: 0;
@@ -89,7 +90,7 @@
 
       width: $base * 5;
       // cursor: col-resize;
-      vertical-align: text-bottom;
+      // vertical-align: text-bottom;
       -webkit-appearance: none;
       -moz-appearance: none;
       appearance: none;
@@ -133,6 +134,7 @@
 
     &.hover {
       button {
+        pointer-events: none;
         opacity: 0;
       }
 

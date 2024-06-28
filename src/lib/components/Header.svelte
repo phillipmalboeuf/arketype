@@ -43,7 +43,7 @@
     <nav class="flex flex--end secondary">
       <!-- <a class="col col--2of12 col--mobile--6of12 locale" href="/fr">FR</a> -->
 
-      <div class="col col--4of12 col--mobile--12of12 flex flex--spaced">
+      <div class="flex flex--gapped flex--end">
         <ColorToggle />
         <Hour />
       </div>
@@ -112,7 +112,13 @@
             opacity: 1 !important;
           }
         }
-      }      
+      }
+
+      &.secondary {
+        div {
+          flex-wrap: nowrap;
+        }
+      }
     }
   }
 
@@ -170,6 +176,7 @@
 
           :global(aside:last-child) {
             order: -1;
+            margin-right: auto;
           }
         }
 
