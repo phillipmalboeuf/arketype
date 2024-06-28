@@ -30,6 +30,16 @@
     hidden = false
   }
 
+  // @ts-ignore
+  if (e.target.getAttribute('type') === 'range') {
+    // @ts-ignore
+    const rect = e.target.getBoundingClientRect()
+    x = e.clientX
+    y = rect.y + (rect.height / 2)
+
+    return
+  }
+
   x = e.clientX
   y = e.clientY
 }} />

@@ -250,7 +250,7 @@
 			right: $base;
 
       width: calc(100% - ($base * 2));
-      cursor: col-resize;
+      cursor: none !important;
       -webkit-appearance: none;
       -moz-appearance: none;
       appearance: none;
