@@ -89,11 +89,20 @@
           font-size: $base;
           font-weight: normal;
           line-height: $scale;
+          width: 40%;
         }
 
         > ul {
           font-size: $base;
-          width: 50%;
+          width: 60%;
+
+          div {
+            span {
+              &:first-child {
+                width: 33%;
+              }
+            }
+          }
         }
       }
     }
